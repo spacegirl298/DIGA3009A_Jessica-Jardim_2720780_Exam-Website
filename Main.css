@@ -1,17 +1,28 @@
-.body{
-    background-color: #FEFEFC;
+body {
+  background-color: #fefefc;
+  font-family: 'Open Sans';
+  color: #191919;
+}
+h2{
+   
+    font-family: 'Poppins';
+    color: #ed6a18;
+}
+h3{
     
+    font-family: 'Raleway';
+    color: #191919;
 }
 /* ========= NAVBAR ========= */
 .navbar {
-  background-color: #191919; 
+  background-color: #191919;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container {
@@ -29,8 +40,8 @@
   height: 30px;
   cursor: pointer;
   display: block;
-  filter: brightness(0) invert(1); 
-  margin-left: -100px; /* Adjust this value as needed */
+  filter: brightness(0) invert(1);
+  margin-left: -90px; /* Adjust this value as needed */
 }
 
 /* Menu aligned to the right */
@@ -45,7 +56,7 @@
 /* Nav links (white) */
 .nav-menu li a {
   text-decoration: none;
-  color: #FEFEFC;
+  color: #fefefc;
   font-weight: 600;
   font-size: 0.95rem;
   position: relative;
@@ -54,7 +65,7 @@
 }
 
 .nav-menu li a:hover {
-  color: #ED6A18;
+  color: #ed6a18;
 }
 
 .nav-menu li a.active::after {
@@ -64,7 +75,7 @@
   bottom: -6px;
   width: 100%;
   height: 3px;
-  background-color: #ED6A18;
+  background-color: #ed6a18;
   border-radius: 2px;
 }
 
@@ -79,16 +90,20 @@
 .bar {
   width: 26px;
   height: 3px;
-  background-color: #FEFEFC;
+  background-color: #fefefc;
   border-radius: 3px;
   transition: all 0.28s ease;
 }
 
 /* ===== Responsive Navbar ===== */
 @media (max-width: 920px) {
-  .nav-container { padding: 12px 18px; }
+  .nav-container {
+    padding: 12px 18px;
+  }
 
-  .hamburger { display: flex; }
+  .hamburger {
+    display: flex;
+  }
 
   .nav-menu {
     position: absolute;
@@ -99,7 +114,7 @@
     width: 220px;
     padding: 18px;
     border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
     transition: right 0.28s ease;
   }
 
@@ -113,7 +128,8 @@
 }
 
 /* ========= FOOTER ========= */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -134,7 +150,7 @@ main,
 footer {
   margin-top: auto;
   background-color: #191919;
-  color: #FEFEFC;
+  color: #fefefc;
   text-align: center;
   padding: 30px 0;
   border-top: 1px solid #191919;
@@ -176,7 +192,8 @@ footer {
 .footer-nav img:hover {
   transform: scale(1.1);
   opacity: 0.95;
-  filter: brightness(0) saturate(100%) invert(66%) sepia(78%) saturate(4576%) hue-rotate(342deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(66%) sepia(78%) saturate(4576%)
+    hue-rotate(342deg) brightness(97%) contrast(101%);
 }
 
 .footer-bottom {
@@ -187,7 +204,7 @@ footer {
 
 .footer-bottom p {
   font-size: 0.9rem;
-  color: #FEFEFC;
+  color: #fefefc;
   margin-top: 5px;
 }
 

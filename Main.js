@@ -82,7 +82,7 @@ window.addEventListener("DOMContentLoaded", function () {
         </li>
       </ul>
       <div class="footer-bottom">
-        <p>© 2024 Safe Dollar Studio. All Rights Reserved.</p>
+        <p>© 2025 Safe Dollar Studio. All Rights Reserved.</p>
       </div>
     </nav>
   `;

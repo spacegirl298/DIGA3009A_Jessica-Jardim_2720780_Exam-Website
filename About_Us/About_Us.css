@@ -1,0 +1,113 @@
+/* About_Us.css */
+
+/* General Page Styling */
+body {
+  padding-top: 35px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+
+/* Page Header */
+.entry-title {
+    background-color: #ed6a18;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 20px 0;
+    margin: 0 0 40px 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    box-sizing: border-box;
+    border-bottom: 1px solid #b0b0b0;
+}
+
+/* Article Content */
+.hentry {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.e-content figure {
+  margin: 20px 0;
+}
+
+.e-content details summary img,
+.e-content details img {
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Headings */
+.e-content h2 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.e-content h3 {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-top: 20px;
+}
+
+/* Paragraphs */
+.e-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 10px 0 20px 0;
+}
+
+/* Lists */
+.e-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.e-content ul li {
+  margin-bottom: 10px;
+}
+
+/* Interactive Cards Section */
+.e-content figure {
+  display: inline-block;
+  width: 48%;
+  margin: 1%;
+  vertical-align: top;
+}
+
+@media screen and (max-width: 768px) {
+  .e-content figure {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* Back To Top Button */
+#backToTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: none; /* Initially hidden */
+  z-index: 1000;
+}
+
+/* Optional: add hover effect */
+#backToTopBtn:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
