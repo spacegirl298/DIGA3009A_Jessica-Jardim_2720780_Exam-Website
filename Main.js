@@ -1,3 +1,6 @@
+// Base path for GitHub Pages
+const basePath = "/DIGA3009A_Jessica Jardim_2720780_Exam Website/";
+
 window.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector("header");
   const footer = document.querySelector("footer");
