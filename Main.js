@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", function () {
           <span class="bar"></span>
           <span class="bar"></span>
         </div>
-        <img src="${pathPrefix}Home/Images/Logo_Nav_Black.png" class="nav_logo" alt="SDS logo">
+        <img src="/DIGA3009A_Jessica Jardim_2720780_Exam Website/Home/Images/Logo_Nav_White.png" class="nav_logo" alt="SDS logo">
         <ul class="nav-menu" id="nav-menu">
           <li><a href="${pathPrefix}index.html">Home</a></li>
           <li><a href="${pathPrefix}Games/Games.html">Games</a></li>
