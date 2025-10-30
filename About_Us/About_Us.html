@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../Main.css" />
     <link rel="stylesheet" href="./About_Us.css" />
     <link rel="icon" href="../Home/Images/Logo_Icon.png" type="image/x-icon" />
-     <link
+    <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
@@ -23,6 +23,8 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
     <script src="../Main.js"></script>
     <script src="./About_Us.js"></script>
 
@@ -38,15 +40,20 @@
         </section>
         <article class="hentry">
           <div class="e-content">
-            <figure>
-              <details>
-                <!--Front Image-->
-                <summary>
-                  <img src="front.jpg" alt="Front of card" />
-                </summary>
-                <!-- Back Image -->
-                <img src="back.jpg" alt="Back of card" />
-              </details>
+            <figure class="flip-card">
+              <div class="card-inner">
+                <img
+                  class="front"
+                  src="./Images/Our_Story_Card_Black.png"
+                  alt="Front of card"
+                />
+
+                <img
+                  class="back"
+                  src="./Images/Our_Story_Back_Black.png"
+                  alt="Back of card"
+                />
+              </div>
             </figure>
             <h2>OUR STORY</h2>
             <p>
@@ -88,41 +95,55 @@
                 of something larger than ourselves.
               </li>
             </ul>
-            <figure>
-              <details>
-                <!--Front Image-->
-                <summary>
-                  <img src="front.jpg" alt="Front of card" />
-                </summary>
-                <!-- Back Image -->
-                <img src="back.jpg" alt="Back of card" />
-              </details>
+            <figure class="flip-card">
+              <div class="card-inner">
+                <img
+                  class="front"
+                  src="./Images/Missions&Values_Front_Black.png"
+                  alt="Front of card"
+                />
+
+                <img
+                  class="back"
+                  src="./Images/Missions&Values_Back_Black.png"
+                  alt="Back of card"
+                />
+              </div>
             </figure>
             <h2>ACCOMPLISHMENTS</h2>
-            <figure>
-              <details>
-                <!--Front Image-->
-                <summary>
-                  <img src="front.jpg" alt="Front of card" />
-                </summary>
-                <!-- Back Image -->
-                <img src="back.jpg" alt="Back of card" />
-              </details>
+            <figure class="flip-card">
+              <div class="card-inner">
+                <img
+                  class="front"
+                  src="./Images/Honourable_Mention_Front_Black.png"
+                  alt="Front of card"
+                />
+
+                <img
+                  class="back"
+                  src="./Images/Honourable_Mention_Back_Black.png"
+                  alt="Back of card"
+                />
+              </div>
             </figure>
             <h3>HONOURABLE MENTIONS</h3>
             <p>
               In July 2024, we participated in a 3-day campus game jam and
               received an Honourable Mention award for our game Lab Rumble.
             </p>
-            <figure>
-              <details>
-                <!--Front Image-->
-                <summary>
-                  <img src="front.jpg" alt="Front of card" />
-                </summary>
-                <!-- Back Image -->
-                <img src="back.jpg" alt="Back of card" />
-              </details>
+            <figure class = "flip-card">
+              <div class = "card-inner">
+             
+                  <img class = "front"
+                    src="./Images/Best_Game_Front_Black.png"
+                    alt="Front of card"
+                  />
+                
+                <img class = "back"
+                  src="./Images/Best_Game_Back_Black.png"
+                  alt="Back of card"
+                />
+              </div>
             </figure>
             <h3>BEST GAME</h3>
             <p>

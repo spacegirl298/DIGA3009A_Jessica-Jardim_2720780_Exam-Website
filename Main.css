@@ -13,6 +13,21 @@ h3{
     font-family: 'Raleway';
     color: #191919;
 }
+
+.entry-title {
+    background-color: #ed6a18;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 20px 0;
+    margin: 0 0 40px 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    box-sizing: border-box;
+    border-bottom: 1px solid #b0b0b0;
+}
+
+
 /* ========= NAVBAR ========= */
 .navbar {
   background-color: #191919;
