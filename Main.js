@@ -1,5 +1,5 @@
 // Base path for GitHub Pages
-const basePath = "/DIGA3009A_Jessica Jardim_2720780_Exam Website/";
+const basePath = "/DIGA3009A_Jessica%20Jardim_2720780_Exam%20Website/";
 
 window.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector("header");
@@ -7,13 +7,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
   if (!header || !footer) return;
 
-  // Detect if we are on the homepage (root)
+  const currentPath = window.location.pathname;
   const isHome =
-    window.location.pathname.endsWith("index.html") ||
-    window.location.pathname === "/" ||
-    window.location.pathname === "";
-
-  // Adjust paths dynamically
+    currentPath === basePath || currentPath === basePath + "index.html";
   const pathPrefix = isHome ? "./" : "../";
 
   // --- NAVBAR ---
@@ -48,7 +44,10 @@ window.addEventListener("DOMContentLoaded", function () {
     const current = window.location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".nav-menu a").forEach((a) => {
       const linkFile = a.getAttribute("href").split("/").pop();
-      if (linkFile === current || (current === "" && linkFile === "index.html")) {
+      if (
+        linkFile === current ||
+        (current === "" && linkFile === "index.html")
+      ) {
         a.classList.add("active");
 
         // Disable click for current page
