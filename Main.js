@@ -1,5 +1,6 @@
 // Base path for GitHub Pages
-const basePath = "/DIGA3009A_Jessica%20Jardim_2720780_Exam%20Website/";
+const basePath = "./";
+
 
 
 window.addEventListener("DOMContentLoaded", function () {
