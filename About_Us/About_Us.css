@@ -1,8 +1,9 @@
-/* About_Us.css */
-
 /* General Page Styling */
 body {
   padding-top: 35px;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  background-color: #fff;
 }
 
 main {
@@ -11,62 +12,63 @@ main {
   padding: 40px 20px;
 }
 
-
 /* Page Header */
 .entry-title {
-    background-color: #ed6a18;
-    text-align: center;
-    font-weight: 700;
-    font-size: 2rem;
-    padding: 20px 0;
-    margin: 0 0 40px 0;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    box-sizing: border-box;
-    border-bottom: 1px solid #b0b0b0;
+  background-color: #ed6a18;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  padding: 20px 0;
+  margin: 0 0 40px 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  border-bottom: 1px solid #b0b0b0;
+  color: #fff;
 }
 
 /* Article Content */
 .hentry {
   display: flex;
   flex-direction: column;
+  gap: 60px;
+}
+
+/* Content Blocks */
+.content-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
-.e-content figure {
-  margin: 20px 0;
-}
-
-.e-content details summary img,
-.e-content details img {
-  width: 100%;
-  max-width: 300px;
-  display: block;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.text-block {
+  flex: 1;
+  min-width: 300px;
 }
 
 /* Headings */
 .e-content h2 {
   font-weight: 700;
-  font-size: 1.5rem;
-  margin-top: 20px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
+  font-size: 1.6rem;
+  border-bottom: 1px solid #000;
+  padding-bottom: 6px;
+  margin-bottom: 20px;
 }
 
 .e-content h3 {
   font-weight: 600;
   font-size: 1.25rem;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Paragraphs */
 .e-content p {
   font-size: 1rem;
   line-height: 1.6;
-  margin: 10px 0 20px 0;
+  margin-bottom: 10px;
 }
 
 /* Lists */
@@ -79,19 +81,61 @@ main {
   margin-bottom: 10px;
 }
 
-/* Interactive Cards Section */
-.e-content figure {
-  display: inline-block;
-  width: 48%;
-  margin: 1%;
-  vertical-align: top;
+/* Flip Cards */
+.flip-card {
+  perspective: 1000px;
+  width: 200px;
+  height: 250px;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
-  .e-content figure {
-    width: 100%;
-    margin-bottom: 20px;
-  }
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+.card-inner img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+
+}
+
+.card-inner .back {
+  transform: rotateY(180deg);
+}
+
+/* Accomplishments Section */
+.e-content h2:last-of-type {
+  text-align: center;
+  font-size: 1.7rem;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.accomplishments {
+  background-color: #2e2e2e;
+  color: #fff;
+  padding: 60px 20px;
+  margin-left: calc(50% - 50vw);
+  width: 100vw;
+}
+
+.accomplishments .content-block {
+  justify-content: center;
+}
+
+.accomplishments h3 {
+  color: #fff;
+}
+
+.accomplishments p {
+  color: #ddd;
 }
 
 /* Back To Top Button */
@@ -102,85 +146,16 @@ main {
   width: 50px;
   height: 50px;
   cursor: pointer;
-  display: none; /* Initially hidden */
+  display: none;
   z-index: 1000;
 }
 
-/* Optional: add hover effect */
 #backToTopBtn:hover {
   transform: scale(1.1);
   transition: transform 0.2s;
 }
-/* Card Flip Styling */
-.flip-card {
-  perspective: 1000px;
-  display: inline-block;
-  width: 300px;
-  margin: 20px;
-}
 
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  cursor: pointer;
-}
-
-.card-inner img {
-  position: absolute;
-  width: 100%;
-  backface-visibility: hidden;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.card-inner .back {
-  transform: rotateY(180deg);
-}
-/* Align card next to text */
-.content-block {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-bottom: 60px;
-  flex-wrap: wrap; /* Allows stacking on mobile */
-}
-
-.text-block {
-  flex: 1;
-  min-width: 250px;
-}
-
-.flip-card {
-  perspective: 1000px;
-  width: 300px;
-  flex-shrink: 0;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: auto;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  transition: transform 0.8s ease;
-}
-
-.card-inner img {
-  position: absolute;
-  width: 100%;
-  height: auto;
-  backface-visibility: hidden;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.card-inner .back {
-  transform: rotateY(180deg);
-}
-
-/* Responsive layout for smaller screens */
+/* Responsive Layout */
 @media (max-width: 768px) {
   .content-block {
     flex-direction: column;
@@ -190,6 +165,14 @@ main {
 
   .flip-card {
     width: 80%;
-    margin-bottom: 20px;
+    height: auto;
+  }
+
+  .entry-title {
+    font-size: 1.6rem;
+  }
+
+  .e-content h2 {
+    font-size: 1.3rem;
   }
 }
