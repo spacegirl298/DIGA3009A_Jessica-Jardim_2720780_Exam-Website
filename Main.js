@@ -1,7 +1,5 @@
 // Base path for GitHub Pages
-const basePath = "./";
-
-
+const basePath = "/DIGA3009A_Jessica_Jardim_2720780_Exam_Website/";
 
 window.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector("header");
@@ -9,14 +7,22 @@ window.addEventListener("DOMContentLoaded", function () {
 
   if (!header || !footer) return;
 
-  // Detect if we are on the homepage (root)
-  const isHome =
-    window.location.pathname.endsWith("index.html") ||
-    window.location.pathname === "/" ||
-    window.location.pathname === "";
+  // Get current page path
+  const currentPath = window.location.pathname;
+  
+  // Determine if we're on homepage or in a subdirectory
+  const isHome = currentPath.endsWith("/") || 
+                 currentPath.endsWith("index.html") || 
+                 currentPath.endsWith(basePath) ||
+                 currentPath.endsWith(basePath + "index.html");
 
-  // Adjust paths dynamically
-  const pathPrefix = isHome ? "./" : "../";
+  // Set path prefix based on location
+  let pathPrefix;
+  if (isHome) {
+    pathPrefix = "./"; // Root level
+  } else {
+    pathPrefix = "../"; // Subdirectory level
+  }
 
   // --- NAVBAR ---
   header.innerHTML = `
@@ -27,7 +33,7 @@ window.addEventListener("DOMContentLoaded", function () {
           <span class="bar"></span>
           <span class="bar"></span>
         </div>
-        <img src="/DIGA3009A_Jessica Jardim_2720780_Exam Website/Home/Images/Logo_Nav_White.png" class="nav_logo" alt="SDS logo">
+        <img src="${pathPrefix}Home/Images/Logo_Nav_White.png" class="nav_logo" alt="SDS logo">
         <ul class="nav-menu" id="nav-menu">
           <li><a href="${pathPrefix}index.html">Home</a></li>
           <li><a href="${pathPrefix}Games/Games.html">Games</a></li>
@@ -52,10 +58,8 @@ window.addEventListener("DOMContentLoaded", function () {
       const linkFile = a.getAttribute("href").split("/").pop();
       if (linkFile === current || (current === "" && linkFile === "index.html")) {
         a.classList.add("active");
-
-        // Disable click for current page
         a.style.pointerEvents = "none";
-        a.style.opacity = "0.6"; // optional visual cue
+        a.style.opacity = "0.6";
         a.style.cursor = "default";
       }
     });
@@ -96,10 +100,12 @@ window.addEventListener("DOMContentLoaded", function () {
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
 
-  hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-    hamburger.classList.toggle("active");
-  });
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+      hamburger.classList.toggle("active");
+    });
+  }
 
   // --- Dark mode preference ---
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
