@@ -4,6 +4,8 @@ body {
   font-family: 'Poppins', sans-serif;
   color: #000;
   background-color: #fff;
+  margin: 0;
+  line-height: 1.6;
 }
 
 main {
@@ -81,6 +83,10 @@ main {
   margin-bottom: 10px;
 }
 
+.e-content ul li strong {
+  font-weight: 600;
+}
+
 /* Flip Cards */
 .flip-card {
   perspective: 1000px;
@@ -103,7 +109,8 @@ main {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .card-inner .back {
@@ -119,7 +126,7 @@ main {
 }
 
 .accomplishments {
-  background-color: #2e2e2e;
+ 
   color: #fff;
   padding: 60px 20px;
   margin-left: calc(50% - 50vw);
@@ -174,5 +181,9 @@ main {
 
   .e-content h2 {
     font-size: 1.3rem;
+  }
+  
+  .accomplishments {
+    padding: 40px 20px;
   }
 }

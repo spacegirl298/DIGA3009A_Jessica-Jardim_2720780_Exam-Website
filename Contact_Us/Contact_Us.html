@@ -6,25 +6,21 @@
     <meta name="author" content="Jessica Jardim" />
     <meta
       name="description"
-      content="Get in touch with Safe Dollar Studio. Whether you have questions, collaboration ideas, or just want to say hello, we’d love to hear from you!"
+      content="Get in touch with Safe Dollar Studio. Whether you have questions, collaboration ideas, or just want to say hello, we'd love to hear from you!"
     />
     <link rel="stylesheet" href="../Main.css" />
     <link rel="stylesheet" href="./Contact_Us.css" />
     <link rel="icon" href="../Home/Images/Logo_Icon.png" type="image/x-icon" />
-     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
       rel="stylesheet"
     />
     <script src="../Main.js"></script>
-    <script src="./Contact_Us.js"></script>
+    <script src="./Contact_Us.js" defer></script>
 
     <title>Contact Us</title>
   </head>
@@ -32,16 +28,116 @@
     <header></header>
     <div id="navbar-container"></div>
     <main>
-       <section class="text">
+      <section class="text">
         <section class="intro">
           <h1 class="entry-title">CONTACT US</h1>
         </section>
-      <img
-        id="backToTopBtn"
-        src="./homeImages/topButton.png"
-        alt="back to top button"
-        title="Go to top"
-      />
+      </section>
+      
+      <section class="contact-container">
+        <section class="contact-left">
+          <h3>EMAIL US</h3>
+          <p><a href="mailto:safedollarstudios@gmail.com">safedollarstudios@gmail.com</a></p>
+
+          <h3>SOCIAL MEDIA</h3>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/safedollarstudios"><img src="../Home/Images/Instagram_Logo_Black.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@safedollarstudios"><img src="../Home/Images/TikTok_Logo_Black.png" alt="TikTok"></a>
+            <a href="https://www.linkedin.com/in/safe-dollar-studios-047961351/"><img src="../Home/Images/Linkedin_Logo_Black.png" alt="LinkedIn"></a>
+          </div>
+          
+          <div class="contact-info">
+            <h3>WHY CONTACT US?</h3>
+            <ul>
+              <li>Collaboration opportunities</li>
+              <li>Project inquiries</li>
+              <li>General questions</li>
+              <li>Feedback</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="contact-right">
+          <h2>LET'S WORK TOGETHER</h2>
+          <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">FIRST NAME *</label>
+                <input type="text" id="firstName" name="firstName" required />
+                <div class="validation-icon"></div>
+                <small class="error"></small>
+              </div>
+              <div class="form-group">
+                <label for="lastName">LAST NAME *</label>
+                <input type="text" id="lastName" name="lastName" required />
+                <div class="validation-icon"></div>
+                <small class="error"></small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">EMAIL ADDRESS *</label>
+                <input type="email" id="email" name="email" required />
+                <div class="validation-icon"></div>
+                <small class="error"></small>
+              </div>
+              <div class="form-group">
+                <label for="phone">PHONE NUMBER *</label>
+                <input type="tel" id="phone" name="phone" required />
+                <div class="validation-icon"></div>
+                <small class="error"></small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="location">LOCATION *</label>
+                <input type="text" id="location" name="location" required />
+                <div class="validation-icon"></div>
+                <small class="error"></small>
+              </div>
+              <div class="form-group">
+                <label for="date">DATE *</label>
+                <input type="date" id="date" name="date" required />
+                <div class="validation-icon"></div>
+                <small class="error"></small>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="subject">SUBJECT *</label>
+              <input type="text" id="subject" name="subject" required />
+              <div class="validation-icon"></div>
+              <small class="error"></small>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="details">DETAILS *</label>
+              <textarea id="details" name="details" rows="4" required></textarea>
+              <div class="validation-icon"></div>
+              <small class="error"></small>
+            </div>
+
+            <div class="form-group full-width">
+              <div class="form-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">Form completion: <span id="progress-value">0%</span></span>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <span class="btn-text">SUBMIT</span>
+              <div class="btn-loader">
+                <div class="loader"></div>
+              </div>
+            </button>
+            <p id="form-message"></p>
+          </form>
+        </section>
+      </section>
     </main>
     <footer></footer>
     <div id="footer-container"></div>
