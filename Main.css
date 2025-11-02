@@ -1,5 +1,5 @@
 body {
-  background-color: #fefefc;
+ background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
   font-family: 'Open Sans';
   color: #191919;
 }
