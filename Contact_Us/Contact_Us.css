@@ -376,7 +376,7 @@ textarea:focus {
   border: 1px solid #ffcdd2;
 }
 
-/* Social icons initial state */
+
 .social-icons a {
   opacity: 0;
   transform: translateX(-20px);
@@ -410,7 +410,7 @@ textarea:focus {
     font-size: 2.5rem;
   }
   
-  /* Fix for form elements on tablets */
+  
   .form-group {
     margin-bottom: 1.2rem;
   }
@@ -509,12 +509,12 @@ textarea:focus {
     font-size: 0.85rem;
   }
   
-  /* Fix for form layout on mobile */
+
   .form-row {
     margin-bottom: 0;
   }
   
-  /* Ensure proper spacing between form elements */
+ 
   .form-group:last-child {
     margin-bottom: 0;
   }
@@ -575,7 +575,6 @@ textarea:focus {
     padding: 10px;
   }
   
-  /* Additional fixes for very small screens */
   .contact-content {
     gap: 1.5rem;
   }
@@ -592,18 +591,18 @@ textarea:focus {
   }
 }
 
-/* Fix for iOS zoom on input focus */
+
 @media (max-width: 768px) {
   input[type="text"],
   input[type="email"],
   input[type="tel"],
   input[type="date"],
   textarea {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px; 
   }
 }
 
-/* Landscape orientation fixes */
+
 @media (max-height: 500px) and (max-width: 968px) {
   .contact-container {
     padding: 0.5rem 0;
@@ -614,7 +613,6 @@ textarea:focus {
     padding: 1rem;
   }
   
-  /* Reduce vertical spacing in landscape mode */
   .contact-left h3 {
     margin-top: 1rem;
   }

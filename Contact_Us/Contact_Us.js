@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const progressValue = document.getElementById("progress-value");
   const submitBtn = document.querySelector(".submit-btn");
   const btnText = document.querySelector(".btn-text");
-  const contactRight = document.querySelector(".contact-right"); // Added for shake animation
+  const contactRight = document.querySelector(".contact-right"); 
 
   const inputs = form.querySelectorAll("input[required], textarea[required]");
   const totalFields = inputs.length;
@@ -105,93 +105,118 @@ document.addEventListener("DOMContentLoaded", function () {
   let completedFields = 0;
   updateProgress();
 
+
+  const phoneInput = document.getElementById("phone");
+  phoneInput.addEventListener("input", function(e) {
+    
+    let value = e.target.value.replace(/\D/g, '');
+    
+   
+    if (value.length > 10) {
+      value = value.substring(0, 10);
+    }
+    
+   
+    if (value.length >= 6) {
+      e.target.value = `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
+    } else if (value.length >= 3) {
+      e.target.value = `(${value.substring(0, 3)}) ${value.substring(3)}`;
+    } else {
+      e.target.value = value;
+    }
+    
+    validateField(phoneInput);
+    updateProgress();
+  });
+
   inputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      validateField(input);
-      updateProgress();
-    });
-
-    input.addEventListener("blur", () => {
-      validateField(input);
-    });
-
-    if (input.type === "date") {
-      input.addEventListener("change", () => {
+    if (input.type !== "tel") { 
+      input.addEventListener("input", () => {
         validateField(input);
         updateProgress();
       });
+
+      input.addEventListener("blur", () => {
+        validateField(input);
+      });
+
+      if (input.type === "date") {
+        input.addEventListener("change", () => {
+          validateField(input);
+          updateProgress();
+        });
+      }
     }
   });
 
   function validateField(field) {
-  const formGroup = field.closest(".form-group");
-  const errorElement = formGroup.querySelector(".error");
-  const label = formGroup.querySelector("label");
+    const formGroup = field.closest(".form-group");
+    const errorElement = formGroup.querySelector(".error");
+    const label = formGroup.querySelector("label");
 
-  formGroup.classList.remove("valid", "invalid");
-  errorElement.textContent = "";
+    formGroup.classList.remove("valid", "invalid");
+    errorElement.textContent = "";
 
-  if (field.validity.valueMissing) {
-    formGroup.classList.add("invalid");
-    errorElement.textContent = "This field is required.";
-    if (!label.textContent.includes("*")) {
-      label.textContent = label.textContent.trim() + " *";
+    if (field.validity.valueMissing) {
+      formGroup.classList.add("invalid");
+      errorElement.textContent = "This field is required.";
+      if (!label.textContent.includes("*")) {
+        label.textContent = label.textContent.trim() + " *";
+      }
+      return false;
     }
-    return false;
-  }
 
-  let isValid = true;
-  let errorMessage = "";
+    let isValid = true;
+    let errorMessage = "";
 
-  switch (field.type) {
-    case "email":
-      if (field.validity.typeMismatch) {
-        isValid = false;
-        errorMessage = "Please enter a valid email address.";
-      } else if (!isValidEmail(field.value)) {
-        isValid = false;
-        errorMessage = "Email format is incorrect.";
-      }
-      break;
-
-    case "tel":
-      if (!isValidPhone(field.value)) {
-        isValid = false;
-        errorMessage = "Please enter a valid phone number.";
-      }
-      break;
-
-    case "date":
-      if (!isValidDate(field.value)) {
-        isValid = false;
-        errorMessage = "Please select a valid date.";
-      }
-      break;
-
-    case "text":
-      if (field.id === "firstName" || field.id === "lastName") {
-        if (!isValidName(field.value)) {
+    switch (field.type) {
+      case "email":
+        if (field.validity.typeMismatch) {
           isValid = false;
-          errorMessage = "Please enter a valid name (letters only).";
+          errorMessage = "Please enter a valid email address.";
+        } else if (!isValidEmail(field.value)) {
+          isValid = false;
+          errorMessage = "Email format is incorrect.";
         }
-      }
-      break;
-  }
+        break;
 
-  if (!isValid) {
-    formGroup.classList.add("invalid");
-    errorElement.textContent = errorMessage;
-    if (!label.textContent.includes("*")) {
-      label.textContent = label.textContent.trim() + " *";
+      case "tel":
+        if (!isValidPhone(field.value)) {
+          isValid = false;
+          errorMessage = "Please enter a valid 10-digit phone number.";
+        }
+        break;
+
+      case "date":
+        if (!isValidDate(field.value)) {
+          isValid = false;
+          errorMessage = "Please select a valid date.";
+        }
+        break;
+
+      case "text":
+        if (field.id === "firstName" || field.id === "lastName") {
+          if (!isValidName(field.value)) {
+            isValid = false;
+            errorMessage = "Please enter a valid name (letters only).";
+          }
+        }
+        break;
     }
-    return false;
-  } else {
-    formGroup.classList.add("valid");
-    label.textContent = label.textContent.replace(/\s*\*$/, "");
-    return true;
-  }
-}
 
+    if (!isValid) {
+      formGroup.classList.add("invalid");
+      errorElement.textContent = errorMessage;
+      if (!label.textContent.includes("*")) {
+        label.textContent = label.textContent.trim() + " *";
+      }
+      return false;
+    } else {
+      formGroup.classList.add("valid");
+      label.textContent = label.textContent.replace(/\s*\*$/, "");
+      return true;
+    }
+  }
 
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -199,8 +224,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function isValidPhone(phone) {
-    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-    return phoneRegex.test(phone.replace(/\s/g, ""));
+   
+    const digitsOnly = phone.replace(/\D/g, '');
+    return digitsOnly.length === 10;
   }
 
   function isValidDate(dateString) {
