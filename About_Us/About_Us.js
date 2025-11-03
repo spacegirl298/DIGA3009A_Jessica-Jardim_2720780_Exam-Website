@@ -1,4 +1,3 @@
-// About_Us.js
 document.addEventListener("DOMContentLoaded", () => {
   // Card flip functionality
   const cards = document.querySelectorAll(".card-inner");
@@ -10,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
       gsap.to(card, {
         duration: 0.8,
         rotateY: flipped ? 180 : 0,
-        scale: 1.05,
         ease: "power2.inOut",
-        onComplete: () => gsap.to(card, { scale: 1, duration: 0.2 }),
+        transformStyle: "preserve-3d",
+        // Remove any scaling that might cause layout shifts
       });
     });
   });
