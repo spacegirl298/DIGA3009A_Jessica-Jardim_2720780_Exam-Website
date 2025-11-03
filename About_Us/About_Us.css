@@ -110,7 +110,35 @@ main {
   margin-bottom: 5px;
   font-size: 1.05rem;
 }
+/* Glow effect for flip cards */
+.flip-card {
+  position: relative;
+  z-index: 1;
+}
 
+.flip-card .card-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.card-glow {
+  transition: opacity 0.3s ease;
+}
+
+/* Ensure the glow doesn't interfere with layout */
+.flip-card {
+  overflow: visible;
+}
+
+/* Responsive adjustments for glow */
+@media (max-width: 768px) {
+  .flip-card .card-glow {
+    width: 115%;
+    height: 115%;
+    top: -7.5%;
+    left: -7.5%;
+  }
+}
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .e-content ul li {
