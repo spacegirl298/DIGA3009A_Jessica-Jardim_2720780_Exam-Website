@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--Meta Data-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Jessica Jardim" />
     <meta
       name="description"
-      content="Learn more about Safe Dollar Studio —, an indie game studio dedicated to creating playful, meaningful games for players of all ages. Discover our story, vision, and what drives our creativity."
+      content="Learn more about Safe Dollar Studio, an indie game studio dedicated to creating playful, meaningful games for players of all ages. Discover our story, vision, and what drives our creativity."
     />
+    <!--CSS Links-->
     <link rel="stylesheet" href="../Main.css" />
     <link rel="stylesheet" href="./About_Us.css" />
+    <!--JavaScript Links-->
+    <script src="../Main.js"></script>
+    <script src="./About_Us.js"></script>
+    <!--Icon-->
     <link rel="icon" href="../Home/Images/Logo_Icon.png" type="image/x-icon" />
+    <!--Font Links-->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
@@ -23,19 +30,22 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <!--GSAP Animations-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="../Main.js"></script>
-    <script src="./About_Us.js"></script>
+
     <title>About Us</title>
   </head>
   <body>
+    <!--Navbar-->
     <header></header>
     <div id="navbar-container"></div>
     <main>
+      <!--Page Header-->
       <section class="text">
         <section class="intro">
           <h1 class="entry-title">ABOUT US</h1>
         </section>
+
         <article class="hentry">
           <div class="e-content">
             <section class="content-block">
@@ -56,18 +66,20 @@
               <div class="text-block">
                 <h2>OUR STORY</h2>
                 <p>
-                  Safe Dollar Studio was founded in July 2024 in Johannesburg,
-                  South Africa, by a group of five second-year students who
-                  first collaborated at a campus game jam, earning an honourable
-                  mention. This recognition led to a mentorship with
-                  TwoNameGames, which guided them in establishing the studio as
-                  a formal indie game company. By March 2025, the team had grown
-                  to six members, and in July 2025, they achieved further
-                  recognition by winning Best Game at another campus game jam.
-                  Currently, Safe Dollar Studio is focused on its "Safe Dollar
-                  Season," producing a new game prototype every two weeks, with
-                  a commitment to delivering playful, innovative experiences to
-                  the gaming community.
+                  We founded Safe Dollar Studio in July 2024 in Johannesburg,
+                  South Africa, after a campus game jam where our
+                  collaboration earned an honourable mention. That early
+                  recognition inspired us to keep creating together and led to a
+                  mentorship with TwoNameGames, who guided us in turning our
+                  shared passion into an official indie game studio. By March
+                  2025, our team had grown to six dedicated members, and a few
+                  months later — in July 2025 — we were honoured to win Best
+                  Game at another campus game jam. Today, we’re in what we call
+                  our “Safe Dollar Season” — a creative challenge where we
+                  develop a new game prototype every two weeks. Through this
+                  process, we continue to explore new ideas, push our
+                  creativity, and deliver playful, innovative experiences to the
+                  gaming community.
                 </p>
               </div>
             </section>
@@ -118,60 +130,63 @@
             </section>
             <section class="accomplishments">
               <h2>ACCOMPLISHMENTS</h2>
-              <section class="content-block">
-                <figure class="flip-card">
-                  <div class="card-inner">
-                    <img
-                      class="front"
-                      src="./Images/Honourable_Mention_Front_Black.png"
-                      alt="Front of card"
-                    />
-                    <img
-                      class="back"
-                      src="./Images/Honourable_Mention_Back_Black.png"
-                      alt="Back of card"
-                    />
+              <div class="accomplishments-container">
+                <div class="accomplishment-item">
+                  <figure class="flip-card">
+                    <div class="card-inner">
+                      <img
+                        class="front"
+                        src="./Images/Honourable_Mention_Front_Black.png"
+                        alt="Front of card"
+                      />
+                      <img
+                        class="back"
+                        src="./Images/Honourable_Mention_Back_Black.png"
+                        alt="Back of card"
+                      />
+                    </div>
+                  </figure>
+                  <div class="accomplishment-text">
+                    <h3>HONOURABLE MENTION</h3>
+                    <p>
+                      In July 2024, we participated in a 3-day campus game jam
+                      and received an Honourable Mention award for our game Lab
+                      Rumble.
+                    </p>
                   </div>
-                </figure>
-                <div class="text-block">
-                  <h3>HONOURABLE MENTION</h3>
-                  <p>
-                    In July 2024, we participated in a 3-day campus game jam and
-                    received an Honourable Mention award for our game Lab
-                    Rumble.
-                  </p>
                 </div>
-              </section>
-              <section class="content-block">
-                <figure class="flip-card">
-                  <div class="card-inner">
-                    <img
-                      class="front"
-                      src="./Images/Best_Game_Front_Black.png"
-                      alt="Front of card"
-                    />
-                    <img
-                      class="back"
-                      src="./Images/Best_Game_Back_Black.png"
-                      alt="Back of card"
-                    />
+                <div class="accomplishment-item">
+                  <figure class="flip-card">
+                    <div class="card-inner">
+                      <img
+                        class="front"
+                        src="./Images/Best_Game_Front_Black.png"
+                        alt="Front of card"
+                      />
+                      <img
+                        class="back"
+                        src="./Images/Best_Game_Back_Black.png"
+                        alt="Back of card"
+                      />
+                    </div>
+                  </figure>
+                  <div class="accomplishment-text">
+                    <h3>BEST GAME</h3>
+                    <p>
+                      In July 2025, we participated in a 3-day campus game jam
+                      and received an award for Best Game with our game Mage
+                      Brothers.
+                    </p>
                   </div>
-                </figure>
-                <div class="text-block">
-                  <h3>BEST GAME</h3>
-                  <p>
-                    In July 2025, we participated in a 3-day campus game jam and
-                    received an award for Best Game with our game Mage Brothers.
-                  </p>
                 </div>
-              </section>
+              </div>
             </section>
           </div>
         </article>
       </section>
       <img
         id="backToTopBtn"
-        src="./homeImages/topButton.png"
+        src="./Images/topButton.png"
         alt="back to top button"
         title="Go to top"
       />

@@ -1,3 +1,4 @@
+// About_Us.js
 document.addEventListener("DOMContentLoaded", () => {
   // Card flip functionality
   const cards = document.querySelectorAll(".card-inner");
