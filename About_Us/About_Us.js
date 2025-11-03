@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 0.8,
         rotateY: flipped ? 180 : 0,
         ease: "power2.inOut",
-        transformStyle: "preserve-3d",
-        // Remove any scaling that might cause layout shifts
+        // Removed the scale animation to prevent layout shifting
       });
     });
   });

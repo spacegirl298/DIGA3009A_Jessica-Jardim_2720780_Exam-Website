@@ -143,18 +143,19 @@ main {
 
 .accomplishment-item {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-start; /* Changed from center to prevent shifting */
   gap: 30px;
   flex: 1;
   min-width: 400px;
-  /* Add these to fix the flip card positioning */
-  perspective: 1000px;
-  transform-style: preserve-3d;
 }
 
 .accomplishment-text {
   flex: 1;
   text-align: left;
+  min-height: 250px; /* Fixed height to match cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .accomplishment-text h3 {
@@ -166,45 +167,55 @@ main {
   color: #333;
 }
 
-/* Flip Cards - UPDATED */
-.flip-card {
-  perspective: 1000px;
-  width: 200px;
-  height: 250px;
-  flex-shrink: 0;
+/* Back To Top Button */
+#backToTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
-  /* Add these to fix positioning */
-  position: relative;
-  transform-style: preserve-3d;
+  display: none;
+  z-index: 1000;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.8s ease;
-  /* Add this to prevent layout shift */
-  will-change: transform;
-}
-
-.card-inner img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  object-fit: cover;
-  border-radius: 8px;
-  /* Add this to prevent layout shift */
-  will-change: transform;
-}
-
-.card-inner .back {
-  transform: rotateY(180deg);
+#backToTopBtn:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
 }
 
 /* Responsive Layout */
 @media (max-width: 768px) {
+  .content-block {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .flip-card {
+    width: 80%;
+    height: auto;
+  }
+
+  .entry-title {
+    font-size: 1.6rem;
+  }
+
+  .e-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .accomplishments {
+    padding: 40px 20px;
+  }
+
+  .hentry {
+    width: 95%;
+    padding: 20px;
+  }
+  
   .accomplishments-container {
     flex-direction: column;
     align-items: center;
@@ -220,5 +231,6 @@ main {
   
   .accomplishment-text {
     text-align: center;
+    min-height: auto;
   }
 }
