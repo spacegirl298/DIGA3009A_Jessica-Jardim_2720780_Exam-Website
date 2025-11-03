@@ -1,47 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Card flip functionality for ALL flip cards
+    // Card flip functionality
     const flipCards = document.querySelectorAll(".flip-card");
 
     flipCards.forEach((flipCard) => {
         const card = flipCard.querySelector(".card-inner");
         let flipped = false;
-        let hoverAnimation = null;
-        let glowAnimation = null;
         
         // Create glow element
         const glowElement = document.createElement('div');
         glowElement.className = 'card-glow';
-        glowElement.style.position = 'absolute';
-        glowElement.style.width = '110%';
-        glowElement.style.height = '130%';
-        glowElement.style.top = '-5%';
-        glowElement.style.left = '-5%';
-        glowElement.style.borderRadius = '12px';
-        glowElement.style.background = 'radial-gradient(circle at center, rgba(237,106,24,0.6) 0%, rgba(237,106,24,0.2) 50%, rgba(237,106,24,0) 70%)';
-        glowElement.style.opacity = '0';
-        glowElement.style.zIndex = '-1';
-        glowElement.style.pointerEvents = 'none';
-        glowElement.style.filter = 'blur(25px)';
+        Object.assign(glowElement.style, {
+            position: 'absolute',
+            width: '110%',
+            height: '130%',
+            top: '-5%',
+            left: '-5%',
+            borderRadius: '12px',
+            background: 'radial-gradient(circle at center, rgba(237,106,24,0.6) 0%, rgba(237,106,24,0.2) 50%, rgba(237,106,24,0) 70%)',
+            opacity: '0',
+            zIndex: '-1',
+            pointerEvents: 'none',
+            filter: 'blur(25px)'
+        });
         
-        // Add glow element to the flip card
         flipCard.style.position = 'relative';
         flipCard.appendChild(glowElement);
 
         // Hover effect
         flipCard.addEventListener("mouseenter", () => {
-            if (hoverAnimation) hoverAnimation.kill();
-            if (glowAnimation) glowAnimation.kill();
-            
             const targetRotation = flipped ? 160 : 20;
             
-            hoverAnimation = gsap.to(card, {
+            gsap.to(card, {
                 duration: 0.4,
                 rotateY: targetRotation,
                 scale: 1.05,
                 ease: "power2.out"
             });
             
-            glowAnimation = gsap.to(glowElement, {
+            gsap.to(glowElement, {
                 duration: 0.4,
                 opacity: 1,
                 scale: 1.1,
@@ -50,19 +46,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         flipCard.addEventListener("mouseleave", () => {
-            if (hoverAnimation) hoverAnimation.kill();
-            if (glowAnimation) glowAnimation.kill();
-            
             const targetRotation = flipped ? 180 : 0;
             
-            hoverAnimation = gsap.to(card, {
+            gsap.to(card, {
                 duration: 0.4,
                 rotateY: targetRotation,
                 scale: 1,
                 ease: "power2.out"
             });
             
-            glowAnimation = gsap.to(glowElement, {
+            gsap.to(glowElement, {
                 duration: 0.4,
                 opacity: 0,
                 scale: 1,
@@ -73,9 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Click to flip
         flipCard.addEventListener("click", () => {
             flipped = !flipped;
-            
-            if (hoverAnimation) hoverAnimation.kill();
-            if (glowAnimation) glowAnimation.kill();
             
             gsap.to(glowElement, {
                 duration: 0.3,
@@ -92,16 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Back to top button functionality
+    // Back to top button
     const backToTopBtn = document.getElementById("backToTopBtn");
     
     if (backToTopBtn) {
         window.addEventListener("scroll", () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.style.display = "block";
-            } else {
-                backToTopBtn.style.display = "none";
-            }
+            backToTopBtn.style.display = window.pageYOffset > 300 ? "block" : "none";
         });
 
         backToTopBtn.addEventListener("click", () => {
@@ -111,4 +97,33 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+    
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const textBlocks = document.querySelectorAll('.text-block');
+    textBlocks.forEach((block, index) => {
+        gsap.fromTo(block, 
+            {
+                opacity: 0,
+                y: 50
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: block,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse",
+                    markers: false
+                }
+            }
+        );
+    });
+
+   
+
+  
 });

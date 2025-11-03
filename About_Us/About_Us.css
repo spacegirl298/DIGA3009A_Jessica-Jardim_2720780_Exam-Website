@@ -10,7 +10,7 @@ main {
   justify-content: center;
 }
 
-/*Page Header*/
+/* Page Header */
 .entry-title {
   background-color: #ed6a18;
   text-align: center;
@@ -24,7 +24,7 @@ main {
   color: #fefefc;
 }
 
-/* Content Container*/
+/* Content Container */
 .hentry {
   width: 90%;
   max-width: 1000px;
@@ -52,6 +52,7 @@ main {
   padding: 1.5rem;
   background-color: rgba(237, 106, 24, 0.1);
   border-radius: 8px;
+  position: relative;
 }
 
 .e-content h2 {
@@ -107,7 +108,7 @@ main {
   font-size: 1.05rem;
 }
 
-/* Flip Cards - General Styles */
+/* Flip Cards */
 .flip-card {
   perspective: 1000px;
   width: 215px;
@@ -115,7 +116,6 @@ main {
   flex-shrink: 0;
   cursor: pointer;
   position: relative;
-  z-index: 1;
 }
 
 .card-inner {
@@ -124,7 +124,6 @@ main {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.8s ease;
-  transform-origin: center center; /* FIX: Ensure rotation from center */
 }
 
 .card-inner img {
@@ -142,71 +141,7 @@ main {
   transform: rotateY(180deg);
 }
 
-.card-glow {
-  transition: opacity 0.3s ease;
-}
-
-/* Accomplishments Section - Updated to match rest of page */
-.accomplishments {
-  margin-top: 40px;
-  width: 100%;
-}
-
-.accomplishments h2 {
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.6rem;
-  border-bottom: 2px solid rgba(25,25,25,0.2);
-  padding-bottom: 6px;
-  margin-bottom: 40px;
-  color: #191919;
-}
-
-.accomplishments-container {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  align-items: stretch;
-}
-
-.accomplishment-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.accomplishment-item.reverse {
-  flex-direction: row-reverse;
-}
-
-.accomplishment-text {
-  flex: 1;
-  min-width: 300px;
-  margin-top: 1.5rem;
-  padding: 1.5rem;
-  background-color: rgba(237, 106, 24, 0.1);
-  border-radius: 8px;
-  text-align: left;
-}
-
-.accomplishment-text h3 {
-  font-weight: 600;
-  font-size: 1.25rem;
-  margin: 0 0 15px 0;
-  border-bottom: 2px solid rgba(25,25,25,0.2);
-  padding-bottom: 6px;
-}
-
-.accomplishment-text p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0;
-  color: #191919;
-}
-
-/* ===== BACK TO TOP BUTTON ===== */
+/* Back to Top Button */
 #backToTopBtn {
   position: fixed;
   bottom: 30px;
@@ -218,33 +153,31 @@ main {
   z-index: 1000;
   border-radius: 50%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
 }
 
 #backToTopBtn:hover {
   transform: scale(1.1);
-  transition: transform 0.2s;
 }
 
-/* Responsive adjustments */
+
+/* ScrollTrigger Animation Styles */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .content-block {
     flex-direction: column;
     text-align: center;
-  }
-  
-  .accomplishment-item,
-  .accomplishment-item.reverse {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .accomplishment-text {
-    text-align: center;
-    min-width: unset;
-  }
-  
-  .accomplishments-container {
-    gap: 40px;
   }
   
   .hentry {
@@ -255,4 +188,9 @@ main {
   .text-block {
     min-width: unset;
   }
+
+  .floating-element {
+    font-size: 1.5rem;
+  }
 }
+
