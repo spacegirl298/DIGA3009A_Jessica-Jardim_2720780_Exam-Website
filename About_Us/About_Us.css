@@ -10,7 +10,7 @@ main {
   justify-content: center;
 }
 
-/* Page Header */
+/*Page Header*/
 .entry-title {
   background-color: #ed6a18;
   text-align: center;
@@ -24,11 +24,10 @@ main {
   color: #fefefc;
 }
 
-/* Article Content */
+/* Content Container*/
 .hentry {
   width: 90%;
   max-width: 1000px;
-  background: #fefefc;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   padding: 40px;
@@ -37,7 +36,6 @@ main {
   gap: 60px;
 }
 
-/* Content Blocks */
 .content-block {
   display: flex;
   align-items: center;
@@ -50,13 +48,16 @@ main {
 .text-block {
   flex: 1;
   min-width: 300px;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: rgba(237, 106, 24, 0.1);
+  border-radius: 8px;
 }
 
-/* Headings */
 .e-content h2 {
   font-weight: 700;
   font-size: 1.6rem;
-  border-bottom: 1px solid #000;
+  border-bottom: 2px solid rgba(25,25,25,0.2);
   padding-bottom: 6px;
   margin-bottom: 20px;
 }
@@ -64,34 +65,29 @@ main {
 .e-content h3 {
   font-weight: 600;
   font-size: 1.25rem;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
-/* Paragraphs */
 .e-content p {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 10px;
 }
 
-/* Lists */
-
-/* Mission & Values List Styling */
+/* Missions & Values */
 .e-content ul {
   list-style-type: none;
   padding-left: 0;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   margin-top: 20px;
 }
 
 .e-content ul li {
-  margin-bottom: 0;
-  background-color: #f8f8f8;
+  background-color: #fefefc;
   border-left: 4px solid #ed6a18;
-  padding: 15px 20px;
+  padding: 12px 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -110,49 +106,16 @@ main {
   margin-bottom: 5px;
   font-size: 1.05rem;
 }
-/* Glow effect for flip cards */
-.flip-card {
-  position: relative;
-  z-index: 1;
-}
 
-.flip-card .card-inner {
-  position: relative;
-  z-index: 2;
-}
-
-.card-glow {
-  transition: opacity 0.3s ease;
-}
-
-/* Ensure the glow doesn't interfere with layout */
-.flip-card {
-  overflow: visible;
-}
-
-/* Responsive adjustments for glow */
-@media (max-width: 768px) {
-  .flip-card .card-glow {
-    width: 115%;
-    height: 115%;
-    top: -7.5%;
-    left: -7.5%;
-  }
-}
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .e-content ul li {
-    padding: 12px 15px;
-  }
-}
-
-/* Flip Cards */
+/* Flip Cards - General Styles */
 .flip-card {
   perspective: 1000px;
-  width: 200px;
-  height: 250px;
+  width: 215px;
+  height: 315px;
   flex-shrink: 0;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 
 .card-inner {
@@ -161,6 +124,7 @@ main {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.8s ease;
+  transform-origin: center center; /* FIX: Ensure rotation from center */
 }
 
 .card-inner img {
@@ -170,61 +134,79 @@ main {
   backface-visibility: hidden;
   object-fit: cover;
   border-radius: 8px;
+  top: 0;
+  left: 0;
 }
 
 .card-inner .back {
   transform: rotateY(180deg);
 }
 
-/* Accomplishments Section - FIXED */
+.card-glow {
+  transition: opacity 0.3s ease;
+}
+
+/* Accomplishments Section - Updated to match rest of page */
 .accomplishments {
-  padding: 60px 20px;
   margin-top: 40px;
-  text-align: center;
+  width: 100%;
 }
 
 .accomplishments h2 {
   text-align: center;
-  font-size: 1.7rem;
-  border-bottom: 1px solid #000;
+  font-weight: 700;
+  font-size: 1.6rem;
+  border-bottom: 2px solid rgba(25,25,25,0.2);
+  padding-bottom: 6px;
   margin-bottom: 40px;
-  color: #000;
+  color: #191919;
 }
 
 .accomplishments-container {
   display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: stretch;
+}
+
+.accomplishment-item {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 40px;
   flex-wrap: wrap;
 }
 
-.accomplishment-item {
-  display: flex;
-  align-items: flex-start; /* Changed from center to prevent shifting */
-  gap: 30px;
-  flex: 1;
-  min-width: 400px;
+.accomplishment-item.reverse {
+  flex-direction: row-reverse;
 }
 
 .accomplishment-text {
   flex: 1;
+  min-width: 300px;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: rgba(237, 106, 24, 0.1);
+  border-radius: 8px;
   text-align: left;
-  min-height: 250px; /* Fixed height to match cards */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .accomplishment-text h3 {
-  color: #000;
-  margin-top: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0 0 15px 0;
+  border-bottom: 2px solid rgba(25,25,25,0.2);
+  padding-bottom: 6px;
 }
 
 .accomplishment-text p {
-  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #191919;
 }
 
-/* Back To Top Button */
+/* ===== BACK TO TOP BUTTON ===== */
 #backToTopBtn {
   position: fixed;
   bottom: 30px;
@@ -243,51 +225,34 @@ main {
   transition: transform 0.2s;
 }
 
-/* Responsive Layout */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .content-block {
     flex-direction: column;
-    align-items: center;
     text-align: center;
   }
-
-  .flip-card {
-    width: 80%;
-    height: auto;
-  }
-
-  .entry-title {
-    font-size: 1.6rem;
-  }
-
-  .e-content h2 {
-    font-size: 1.3rem;
-  }
-
-  .accomplishments {
-    padding: 40px 20px;
-  }
-
-  .hentry {
-    width: 95%;
-    padding: 20px;
-  }
   
-  .accomplishments-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-  }
-  
-  .accomplishment-item {
+  .accomplishment-item,
+  .accomplishment-item.reverse {
     flex-direction: column;
     text-align: center;
-    min-width: 100%;
-    align-items: center;
   }
   
   .accomplishment-text {
     text-align: center;
-    min-height: auto;
+    min-width: unset;
+  }
+  
+  .accomplishments-container {
+    gap: 40px;
+  }
+  
+  .hentry {
+    padding: 20px;
+    gap: 40px;
+  }
+  
+  .text-block {
+    min-width: unset;
   }
 }
