@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--Meta Data-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Jessica Jardim" />
@@ -8,10 +9,16 @@
       name="description"
       content="Meet the team behind Safe Dollar Studio, a passionate group of indie developers and artists dedicated to crafting unique and playful gaming experiences"
     />
+    <!--CSS links-->
     <link rel="stylesheet" href="../Main.css" />
     <link rel="stylesheet" href="./Team.css" />
+    <!--JavaScript Links-->
+    <script src="../Main.js"></script>
+    <script src="./Team.js"></script>
+    <!--Icon-->
     <link rel="icon" href="../Home/Images/Logo_Icon.png" type="image/x-icon" />
-     <link
+    <!--Font Links-->
+    <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
@@ -23,9 +30,8 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <script src="../Main.js"></script>
-    <script src="./Team.js"></script>
-
+    <!--GSAP Animations-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <title>Team</title>
   </head>
   <body>
@@ -33,77 +39,241 @@
     <div id="navbar-container"></div>
     <main>
       <section class="text">
-        <section class="intro">
-          <h1 class="entry-title">TEAM</h1>
+        <!--Page Header-->
+        <section class="text">
+          <section class="intro">
+            <h1 class="entry-title">CONTACT US</h1>
+          </section>
         </section>
-       
-    <section class="team-section">
-      <h2>TEAM</h2>
-      <div class="team-carousel">
-        <div class="team-card">
-          <img src="./Images/Connor_Profile_Black.png" alt="Jessica Jardim" />
-          <h3>Jessica Jardim</h3>
-          <p>SOCIAL MEDIA</p>
-          <div class="icons">
-            <img src="../Home/Images/Itch_Logo_Black.png" alt="Phone" />
-            <img src="../Home/Images/Instagram_Logo_Black.png" alt="Instagram" />
-            <img src="../Home/Images/Linkedin_Logo_Black.png" alt="LinkedIn" />
-          </div>
-        </div>
 
-        <div class="team-card">
-          <img src="./Images/Jessica_Profile_Black.png" alt="Connor van Heerden" />
-          <h3>Connor van Heerden</h3>
-          <p>GAME DESIGNER</p>
-          <div class="icons">
-            <img src="../Home/Images/Itch_Logo_Black.png" alt="Phone" />
-            <img src="../Home/Images/Instagram_Logo_Black.png" alt="Instagram" />
-            <img src="../Home/Images/Linkedin_Logo_Black.png" alt="LinkedIn" />
-          </div>
-        </div>
+        <!-- Updated team card section -->
+        <section class="team-section">
+          <div class="carousel-container">
+            <div class="team-carousel">
+              <div class="team-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <img
+                      src="./Images/Connor_Profile_Black.png"
+                      alt="Connor van Heerden"
+                    />
+                    <div class="card-overlay"></div>
+                  </div>
+                  <div class="card-back">
+                    <img
+                      src="./Images/Team_Card_Back.png"
+                      alt="Connor van Heerden"
+                    />
+                    <div class="card-back-overlay">
+                      <h2>Connor van Heerden</h2>
+                      <p>
+                        Lead Developer with 8+ years of experience in game
+                        development. Specializes in Unity and C#.
+                      </p>
+                      <a href = ""><img src = "../Home/Images/Instagram_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Linkedin_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Itch_Logo_White.png"/></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        <div class="team-card">
-          <img src="./Images/Jordan_Profile_Black.png" alt="Jordan Chicksens" />
-          <h3>Jordan Chicksens</h3>
-          <p>PROJECT MANAGER</p>
-          <div class="icons">
-             <img src="../Home/Images/Itch_Logo_Black.png" alt="Phone" />
-            <img src="../Home/Images/Instagram_Logo_Black.png" alt="Instagram" />
-            <img src="../Home/Images/Linkedin_Logo_Black.png" alt="LinkedIn" />
-          </div>
-        </div>
+              <div class="team-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <img
+                      src="./Images/Jessica_Profile_Black.png"
+                      alt="Jessica Jardim"
+                    />
+                    <div class="card-overlay"></div>
+                  </div>
+                  <div class="card-back">
+                    <img
+                     src="./Images/Team_Card_Back.png"
+                      alt="Jessica Jardim"
+                    />
+                    <div class="card-back-overlay">
+                      <h2>Jessica Jardim</h2>
+                      <p>
+                        Creative Director with a passion for storytelling and
+                        visual design. Leads our artistic vision.
+                      </p>
+                      <a href = ""><img src = "../Home/Images/Instagram_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Linkedin_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Itch_Logo_White.png"/></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        <div class="team-card">
-          <img src="./Images/Rea_Profile_Black.png" alt="Reatile Davhana" />
-          <h3>Reatile Davhana</h3>
-          <p>LEAD PROGRAMMER</p>
-          <div class="icons">
-             <img src="../Home/Images/Itch_Logo_Black.png" alt="Phone" />
-            <img src="../Home/Images/Instagram_Logo_Black.png" alt="Instagram" />
-            <img src="../Home/Images/Linkedin_Logo_Black.png" alt="LinkedIn" />
-          </div>
-        </div>
+              <div class="team-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <img
+                      src="./Images/Jordan_Profile_Black.png"
+                      alt="Jordan Chicksens"
+                    />
+                    <div class="card-overlay"></div>
+                  </div>
+                  <div class="card-back">
+                    <img
+                       src="./Images/Team_Card_Back.png"
+                      alt="Jordan Chicksens"
+                    />
+                    <div class="card-back-overlay">
+                      <h2>Jordan Chicksens</h2>
+                      <p>
+                        Game Designer focused on creating engaging gameplay
+                        mechanics and player experiences.
+                      </p>
+                      <a href = ""><img src = "../Home/Images/Instagram_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Linkedin_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Itch_Logo_White.png"/></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        <div class="team-card">
-          <img src="./Images/Sihawu_Profile_Black.png" alt="Sihawu Zulu" />
-          <h3>Sihawu Zulu</h3>
-             <div class="icons">
-             <img src="../Home/Images/Itch_Logo_Black.png" alt="Phone" />
-            <img src="../Home/Images/Instagram_Logo_Black.png" alt="Instagram" />
-            <img src="../Home/Images/Linkedin_Logo_Black.png" alt="LinkedIn" />
+              <div class="team-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <img
+                      src="./Images/Rea_Profile_Black.png"
+                      alt="Reatile Davhana"
+                    />
+                    <div class="card-overlay"></div>
+                  </div>
+                  <div class="card-back">
+                    <img
+                      src="./Images/Team_Card_Back.png"
+                      alt="Reatile Davhana"
+                    />
+                    <div class="card-back-overlay">
+                      <h2>Reatile Davhana</h2>
+                      <p>
+                        3D Artist specializing in character modeling and
+                        environmental design. Brings our worlds to life.
+                      </p>
+                      <a href = ""><img src = "../Home/Images/Instagram_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Linkedin_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Itch_Logo_White.png"/></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="team-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <img
+                      src="./Images/Sihawu_Profile_Black.png"
+                      alt="Sihawu Zulu"
+                    />
+                    <div class="card-overlay"></div>
+                  </div>
+                  <div class="card-back">
+                    <img
+                     src="./Images/Team_Card_Back.png"
+                      alt="Sihawu Zulu"
+                    />
+                    <div class="card-back-overlay">
+                      <h2>Sihawu Zulu</h2>
+                      <p>
+                        Sound Designer creating immersive audio experiences that
+                        enhance gameplay and storytelling.
+                      </p>
+                      <a href = ""><img src = "../Home/Images/Instagram_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Linkedin_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Itch_Logo_White.png"/></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="team-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <img
+                      src="./Images/Rameez_Profile_Black.png"
+                      alt="Rameez Cassim"
+                    />
+                    <div class="card-overlay"></div>
+                  </div>
+                  <div class="card-back">
+                    <img
+                       src="./Images/Team_Card_Back.png"
+                      alt="Rameez Cassim"
+                    />
+                    <div class="card-back-overlay">
+                      <h2>Rameez Cassim</h2>
+                      <p>
+                        UI/UX Designer focused on creating intuitive and
+                        visually appealing interfaces for our games.
+                      </p>
+                      <a href = ""><img src = "../Home/Images/Instagram_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Linkedin_Logo_White.png"/></a>
+                      <a href = ""><img src = "../Home/Images/Itch_Logo_White.png"/></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rest of the carousel controls remains the same -->
+            <div class="carousel-controls">
+              <button
+                class="carousel-btn prev-btn"
+                aria-label="Previous team member"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 18L9 12L15 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div class="carousel-indicators">
+                <!-- Indicators will be generated by JavaScript -->
+              </div>
+              <button
+                class="carousel-btn next-btn"
+                aria-label="Next team member"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 18L15 12L9 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div class="auto-play-toggle">
+              <input type="checkbox" id="auto-play" checked />
+              <label for="auto-play">Auto Play</label>
+            </div>
           </div>
-        </div>
-         <div class="team-card">
-          <img src="./Images/Sihawu_Profile_Black.png" alt="Rameez Cassim" />
-          <h3>Rameez Cassim</h3>
-          <div class="icons">
-             <img src="../Home/Images/Itch_Logo_Black.png" alt="Phone" />
-            <img src="../Home/Images/Instagram_Logo_Black.png" alt="Instagram" />
-            <img src="../Home/Images/Linkedin_Logo_Black.png" alt="LinkedIn" />
-          </div>
-      </div>
-    </section>
-  </main>
+        </section>
+      </section>
+    </main>
 
     <footer></footer>
     <div id="footer-container"></div>
