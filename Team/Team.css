@@ -93,44 +93,19 @@ body {
 .team-card:hover .card-front img {
   transform: scale(1.05);
 }
-.card-back-overlay {
-  position: relative;
-  z-index: 2;
 
-  padding: 2rem 1.5rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-/* Social media links styling */
-.card-back .card-back-overlay a {
-  display: inline-block;
-  margin-right: 10px;
-  transition: transform 0.3s ease;
-}
-
-.card-back .card-back-overlay a:hover {
-  transform: scale(1.1);
-}
-
-.card-back .card-back-overlay img {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) invert(1);
-}
+/* FIXED Card Back Styling */
 .card-back {
   position: relative;
   background: transparent;
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   padding: 0;
   text-align: left;
   overflow: hidden;
 }
+
 .card-back img {
   width: 100%;
   height: 100%;
@@ -140,13 +115,80 @@ body {
   left: 0;
   z-index: 1;
 }
-.card-back h2 {
-  
-  font-weight: 600;
+
+/* FIXED Card Back Overlay - Proper layout */
+.card-back-overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 2rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
-.card-back p {
-  color: #fefefc;
+.card-back-overlay h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.55);
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.card-back-overlay p {
+  color: #f3f3f3;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-weight: 300;
+  margin: 0 0 1rem 0;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.55);
+  
+  /* Fix text overflow */
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-height: 0;
+}
+
+/* FIXED Social Icons - Proper spacing and sizing */
+.card-back-overlay .Socials {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0; 
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.card-back-overlay .Socials a {
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.card-back-overlay .Socials img {
+  margin-left: 30px;
+  margin-top: 330px;
+  width: 10%;
+  height: 10%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
+}
+
+.card-back-overlay .Socials a:hover img {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 /* Carousel Controls */
@@ -266,6 +308,24 @@ body {
   .carousel-controls {
     padding: 0;
   }
+
+  .card-back-overlay {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .card-back-overlay p {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 5;
+  }
+  
+  .card-back-overlay .Socials {
+    gap: 16px;
+  }
+  
+  .card-back-overlay .Socials a {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -278,11 +338,26 @@ body {
     height: 300px;
   }
 
-  .card-back {
+  .card-back-overlay {
     padding: 1rem;
   }
-
-  .card-back h3 {
+  
+  .card-back-overlay h2 {
     font-size: 1.2rem;
+  }
+  
+  .card-back-overlay p {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 4;
+  }
+  
+  .card-back-overlay .Socials {
+    gap: 12px;
+    padding-top: 0.5rem;
+  }
+  
+  .card-back-overlay .Socials a {
+    width: 24px;
+    height: 24px;
   }
 }
