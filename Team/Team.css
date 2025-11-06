@@ -45,6 +45,8 @@ body {
   align-items: center;
 }
 
+/*Front cards*/
+
 .team-card {
   flex: 0 0 300px;
   height: 400px;
@@ -94,7 +96,7 @@ body {
   transform: scale(1.05);
 }
 
-/* FIXED Card Back Styling */
+/*Card Back*/
 .card-back {
   position: relative;
   background: transparent;
@@ -116,7 +118,6 @@ body {
   z-index: 1;
 }
 
-/* FIXED Card Back Overlay - Proper layout */
 .card-back-overlay {
   position: relative;
   z-index: 2;
@@ -129,7 +130,7 @@ body {
 }
 
 .card-back-overlay h2 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.55);
@@ -138,14 +139,12 @@ body {
 }
 
 .card-back-overlay p {
-  color: #f3f3f3;
+  color: #FEFEFC;
   font-size: 0.9rem;
   line-height: 1.4;
   font-weight: 300;
   margin: 0 0 1rem 0;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.55);
-  
-  /* Fix text overflow */
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
@@ -155,24 +154,21 @@ body {
   min-height: 0;
 }
 
-/* FIXED Social Icons - Proper spacing and sizing */
+/*Social Icons*/
 .card-back-overlay .Socials {
   display: flex;
   gap: 20px;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  flex-shrink: 0; 
   margin-top: auto;
   padding-top: 1rem;
 }
 
 .card-back-overlay .Socials a {
-  display: inline-block;
   width: 2px;
   height: 2px;
   transition: transform 0.3s ease;
-  flex-shrink: 0;
 }
 
 .card-back-overlay .Socials img {
@@ -180,7 +176,6 @@ body {
   margin-top: 330px;
   width: 10%;
   height: 10%;
-  object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.85;
   transition: opacity 0.25s ease;

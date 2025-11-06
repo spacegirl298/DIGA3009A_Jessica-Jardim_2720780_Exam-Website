@@ -39,19 +39,16 @@ function initCarousel() {
     });
   }
 
-  // Update center card styling - FIXED: Now properly centers cards vertically
+  // Update center card styling
   function updateCenterCard() {
     cards.forEach((card, index) => {
-      // Reset all cards to normal size and remove center class
       card.style.flex = '0 0 300px';
       card.style.height = '400px';
       card.style.zIndex = '1';
       card.classList.remove('center-card');
       
-      // Find the center card (2nd card in view when showing 3 cards)
       const centerIndex = (currentIndex + 1) % cards.length;
       if (index === centerIndex) {
-        // Make this card larger (center card)
         card.style.flex = '0 0 350px';
         card.style.height = '450px';
         card.style.zIndex = '2';
@@ -104,10 +101,8 @@ function initCarousel() {
   function nextSlide() {
     if (isAnimating) return;
     
-    // Always move forward
     currentIndex++;
     
-    // If we've gone past the last card, reset to first card instantly
     if (currentIndex >= 4) {
       currentIndex = 0;
       gsap.set(carousel, { x: 0 });
@@ -119,10 +114,8 @@ function initCarousel() {
   function prevSlide() {
     if (isAnimating) return;
     
-    // Move backward
     currentIndex--;
     
-    // If we've gone before the first card, go to the last card
     if (currentIndex < 0) {
       currentIndex = 3;
       const offset = -currentIndex * cardWidth;
@@ -199,7 +192,6 @@ function initCarousel() {
     
     const diffX = startX - currentX;
     
-    // Allow both forward and backward swipes
     if (diffX > 50) {
       nextSlide();
     } else if (diffX < -50) {
@@ -229,7 +221,6 @@ function initCarousel() {
     
     const diffX = startX - currentX;
     
-    // Allow both forward and backward drags
     if (diffX > 50) {
       nextSlide();
     } else if (diffX < -50) {
