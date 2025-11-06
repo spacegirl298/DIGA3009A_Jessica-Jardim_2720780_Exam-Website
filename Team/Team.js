@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initCarousel() {
   const carousel = document.querySelector('.team-carousel');
   const cards = Array.from(document.querySelectorAll('.team-card'));
+  const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
   const indicatorsContainer = document.querySelector('.carousel-indicators');
   const autoPlayToggle = document.getElementById('auto-play');
@@ -38,6 +39,27 @@ function initCarousel() {
     });
   }
 
+  // Update center card styling - FIXED: Now properly centers cards vertically
+  function updateCenterCard() {
+    cards.forEach((card, index) => {
+      // Reset all cards to normal size and remove center class
+      card.style.flex = '0 0 300px';
+      card.style.height = '400px';
+      card.style.zIndex = '1';
+      card.classList.remove('center-card');
+      
+      // Find the center card (2nd card in view when showing 3 cards)
+      const centerIndex = (currentIndex + 1) % cards.length;
+      if (index === centerIndex) {
+        // Make this card larger (center card)
+        card.style.flex = '0 0 350px';
+        card.style.height = '450px';
+        card.style.zIndex = '2';
+        card.classList.add('center-card');
+      }
+    });
+  }
+
   // Update carousel position
   function updateCarousel(animate = true) {
     if (isAnimating) return;
@@ -52,11 +74,13 @@ function initCarousel() {
         ease: "power2.out",
         onComplete: () => {
           isAnimating = false;
+          updateCenterCard();
         }
       });
     } else {
       gsap.set(carousel, { x: offset });
       isAnimating = false;
+      updateCenterCard();
     }
 
     updateIndicators();
@@ -84,10 +108,25 @@ function initCarousel() {
     currentIndex++;
     
     // If we've gone past the last card, reset to first card instantly
-    if (currentIndex >= cards.length) {
-      // Jump back to first card without animation
+    if (currentIndex >= 4) {
       currentIndex = 0;
       gsap.set(carousel, { x: 0 });
+    }
+    
+    updateCarousel(true);
+  }
+
+  function prevSlide() {
+    if (isAnimating) return;
+    
+    // Move backward
+    currentIndex--;
+    
+    // If we've gone before the first card, go to the last card
+    if (currentIndex < 0) {
+      currentIndex = 3;
+      const offset = -currentIndex * cardWidth;
+      gsap.set(carousel, { x: offset });
     }
     
     updateCarousel(true);
@@ -111,6 +150,11 @@ function initCarousel() {
   }
 
   // Event listeners
+  prevBtn.addEventListener('click', () => {
+    prevSlide();
+    if (autoPlayToggle.checked) startAutoPlay();
+  });
+
   nextBtn.addEventListener('click', () => {
     nextSlide();
     if (autoPlayToggle.checked) startAutoPlay();
@@ -125,6 +169,9 @@ function initCarousel() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') {
       nextSlide();
+      if (autoPlayToggle.checked) startAutoPlay();
+    } else if (e.key === 'ArrowLeft') {
+      prevSlide();
       if (autoPlayToggle.checked) startAutoPlay();
     }
   });
@@ -152,9 +199,11 @@ function initCarousel() {
     
     const diffX = startX - currentX;
     
-    // Only allow forward (left) swipes
+    // Allow both forward and backward swipes
     if (diffX > 50) {
       nextSlide();
+    } else if (diffX < -50) {
+      prevSlide();
     }
     
     isDragging = false;
@@ -180,9 +229,11 @@ function initCarousel() {
     
     const diffX = startX - currentX;
     
-    // Only allow forward (left) drags
+    // Allow both forward and backward drags
     if (diffX > 50) {
       nextSlide();
+    } else if (diffX < -50) {
+      prevSlide();
     }
     
     isDragging = false;
@@ -212,8 +263,6 @@ function initCarousel() {
   
   // Start auto-play immediately since it's checked by default
   startAutoPlay();
-
-  console.log('Simple infinite carousel initialized');
 }
 
 // Animations
