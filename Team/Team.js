@@ -9,6 +9,7 @@ function initCarousel() {
   const cards = Array.from(document.querySelectorAll('.team-card'));
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
+  const toggleBtn = document.getElementById('toggle-slide');
   const indicatorsContainer = document.querySelector('.carousel-indicators');
   const autoPlayToggle = document.getElementById('auto-play');
 
@@ -72,12 +73,14 @@ function initCarousel() {
         onComplete: () => {
           isAnimating = false;
           updateCenterCard();
+          updateToggleButton();
         }
       });
     } else {
       gsap.set(carousel, { x: offset });
       isAnimating = false;
       updateCenterCard();
+      updateToggleButton();
     }
 
     updateIndicators();
@@ -90,6 +93,13 @@ function initCarousel() {
     indicators.forEach((indicator, index) => {
       indicator.classList.toggle('active', index === realIndex);
     });
+  }
+
+  // Update toggle button text
+  function updateToggleButton() {
+    const totalSlides = cards.length;
+    const currentSlide = (currentIndex % totalSlides) + 1;
+    toggleBtn.textContent = `Member ${currentSlide} of ${totalSlides}`;
   }
 
   // Navigation
@@ -149,6 +159,11 @@ function initCarousel() {
   });
 
   nextBtn.addEventListener('click', () => {
+    nextSlide();
+    if (autoPlayToggle.checked) startAutoPlay();
+  });
+
+  toggleBtn.addEventListener('click', () => {
     nextSlide();
     if (autoPlayToggle.checked) startAutoPlay();
   });
@@ -251,6 +266,7 @@ function initCarousel() {
   calculateCardWidth();
   createIndicators();
   updateCarousel(false);
+  updateToggleButton();
   
   // Start auto-play immediately since it's checked by default
   startAutoPlay();

@@ -127,3 +127,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 });
+function initAnimations() {
+  gsap.from('.entry-title', {
+    duration: 1,
+    y: -50,
+    opacity: 0,
+    ease: "power3.out"
+  });
+}

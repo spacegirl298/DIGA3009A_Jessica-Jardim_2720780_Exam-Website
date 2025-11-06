@@ -30,9 +30,8 @@ body {
   position: relative;
   max-width: 1050px;
   margin: 0 auto;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+  overflow: hidden; 
+  display: block; 
   min-height: 500px;
 }
 
@@ -139,7 +138,7 @@ body {
 }
 
 .card-back-overlay p {
-  color: #FEFEFC;
+  color: #fefefc;
   font-size: 0.9rem;
   line-height: 1.4;
   font-weight: 300;
@@ -154,46 +153,19 @@ body {
   min-height: 0;
 }
 
-/*Social Icons*/
-.card-back-overlay .Socials {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: auto;
-  padding-top: 1rem;
-}
-
-.card-back-overlay .Socials a {
-  width: 2px;
-  height: 2px;
-  transition: transform 0.3s ease;
-}
-
-.card-back-overlay .Socials img {
-  margin-left: 30px;
-  margin-top: 330px;
-  width: 10%;
-  height: 10%;
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
-  transition: opacity 0.25s ease;
-}
-
-.card-back-overlay .Socials a:hover img {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
 /* Carousel Controls */
 .carousel-controls {
+    position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Keep this */
   align-items: center;
+  gap: 1rem; /* Reduced significantly */
+  z-index: 10;
   margin-top: 2rem;
-  padding: 0 1rem;
-  gap: 1rem;
+  width: 100%;
+  max-width: 600px; /* Add a max-width to contain them */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .carousel-btn {
@@ -211,14 +183,16 @@ body {
 }
 
 .carousel-btn:hover {
-  background: rgba(106, 17, 203, 1);
+  background: rgba(237, 106, 24, 1);
   transform: scale(1.1);
 }
 
 .carousel-indicators {
   display: flex;
   gap: 0.5rem;
-  order: 2;
+  order: 3;
+  flex: 1;
+  justify-content: center;
 }
 
 .prev-btn {
@@ -227,29 +201,49 @@ body {
 }
 
 .next-btn {
-  order: 3;
+  order: 4;
 }
 
 .indicator {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(120, 62, 2, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .indicator.active {
-  background: #6a11cb;
+  background:rgba(237, 106, 24, 1); 
   transform: scale(1.2);
 }
 
+/* Toggle Button */
+.toggle-btn {
+  background: rgba(237, 106, 24, 1); 
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  order: 2;
+  margin: 0 1rem;
+}
+
+
+
 /* Auto Play Toggle */
 .auto-play-toggle {
+    position: relative;
+  z-index: 10;
+  margin-top: 1rem;
+  text-align: center;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 1.5rem;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -257,7 +251,7 @@ body {
   appearance: none;
   width: 50px;
   height: 26px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(120, 62, 2, 0.4);
   border-radius: 13px;
   position: relative;
   cursor: pointer;
@@ -265,7 +259,7 @@ body {
 }
 
 .auto-play-toggle input[type="checkbox"]:checked {
-  background: #6a11cb;
+  background: rgba(237, 106, 24, 1); 
 }
 
 .auto-play-toggle input[type="checkbox"]::before {
@@ -287,6 +281,7 @@ body {
 .auto-play-toggle label {
   cursor: pointer;
   font-size: 0.9rem;
+  font-weight: 700;
 }
 
 /* Responsive Design */
@@ -307,19 +302,29 @@ body {
   .card-back-overlay {
     padding: 1.5rem 1.2rem;
   }
-  
+
   .card-back-overlay p {
     font-size: 0.85rem;
     -webkit-line-clamp: 5;
   }
-  
+
   .card-back-overlay .Socials {
     gap: 16px;
   }
-  
+
   .card-back-overlay .Socials a {
     width: 28px;
     height: 28px;
+  }
+
+  .toggle-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    margin: 0 0.5rem;
+  }
+
+  .carousel-controls {
+    justify-content: center;
   }
 }
 
@@ -336,23 +341,35 @@ body {
   .card-back-overlay {
     padding: 1rem;
   }
-  
+
   .card-back-overlay h2 {
     font-size: 1.2rem;
   }
-  
+
   .card-back-overlay p {
     font-size: 0.8rem;
     -webkit-line-clamp: 4;
   }
-  
+
   .card-back-overlay .Socials {
     gap: 12px;
     padding-top: 0.5rem;
   }
-  
+
   .card-back-overlay .Socials a {
     width: 24px;
     height: 24px;
+  }
+
+  .toggle-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    order: 4;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .carousel-controls {
+    flex-direction: column;
   }
 }
