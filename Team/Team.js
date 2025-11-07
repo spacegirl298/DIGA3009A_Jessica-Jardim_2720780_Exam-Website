@@ -18,42 +18,77 @@ function initCarousel() {
   const autoPlayDelay = 3000;
   let isAnimating = false;
   let cardWidth = 0;
+  let cardsToShow = 3; // Default for desktop
+
+  // Calculate how many cards to show based on screen size
+  function calculateCardsToShow() {
+    const width = window.innerWidth;
+    if (width <= 480) { // Mobile
+      cardsToShow = 1;
+    } else if (width <= 768) { // Tablet
+      cardsToShow = 2;
+    } else { // Desktop
+      cardsToShow = 3;
+    }
+    return cardsToShow;
+  }
 
   // Calculate card width including gap
   function calculateCardWidth() {
     if (cards.length === 0) return 0;
+    calculateCardsToShow();
+    
     const card = cards[0];
     const gap = parseInt(window.getComputedStyle(carousel).gap) || 32;
-    cardWidth = card.offsetWidth + gap;
-    return cardWidth;
+    const containerWidth = carousel.parentElement.offsetWidth;
+    
+    // Calculate card width based on how many cards should be visible
+    cardWidth = (containerWidth - (gap * (cardsToShow - 1))) / cardsToShow;
+    
+    // Update card sizes
+    cards.forEach(card => {
+      card.style.flex = `0 0 ${cardWidth}px`;
+    });
+    
+    return cardWidth + gap;
   }
 
   // Create indicators
   function createIndicators() {
     indicatorsContainer.innerHTML = '';
-    cards.forEach((_, index) => {
+    const totalIndicators = Math.max(1, cards.length - cardsToShow + 1);
+    
+    for (let i = 0; i < totalIndicators; i++) {
       const indicator = document.createElement('div');
       indicator.classList.add('indicator');
-      if (index === 0) indicator.classList.add('active');
-      indicator.addEventListener('click', () => goToSlide(index));
+      if (i === 0) indicator.classList.add('active');
+      indicator.addEventListener('click', () => goToSlide(i));
       indicatorsContainer.appendChild(indicator);
-    });
+    }
   }
 
   // Update center card styling
   function updateCenterCard() {
     cards.forEach((card, index) => {
-      card.style.flex = '0 0 300px';
-      card.style.height = '400px';
       card.style.zIndex = '1';
       card.classList.remove('center-card');
       
-      const centerIndex = (currentIndex + 1) % cards.length;
-      if (index === centerIndex) {
-        card.style.flex = '0 0 350px';
-        card.style.height = '450px';
-        card.style.zIndex = '2';
-        card.classList.add('center-card');
+      // Calculate center index based on current view
+      const centerIndex = Math.floor(cardsToShow / 2);
+      const viewStartIndex = currentIndex;
+      const viewEndIndex = currentIndex + cardsToShow - 1;
+      
+      if (index >= viewStartIndex && index <= viewEndIndex) {
+        const isCenter = index === viewStartIndex + centerIndex;
+        if (isCenter && cardsToShow > 1) {
+          card.style.transform = 'scale(1.05)';
+          card.style.zIndex = '2';
+          card.classList.add('center-card');
+        } else {
+          card.style.transform = 'scale(1)';
+        }
+      } else {
+        card.style.transform = 'scale(1)';
       }
     });
   }
@@ -63,7 +98,8 @@ function initCarousel() {
     if (isAnimating) return;
     isAnimating = true;
 
-    const offset = -currentIndex * cardWidth;
+    const gap = parseInt(window.getComputedStyle(carousel).gap) || 32;
+    const offset = -currentIndex * (cardWidth + gap);
 
     if (animate) {
       gsap.to(carousel, {
@@ -89,7 +125,9 @@ function initCarousel() {
   // Update indicators
   function updateIndicators() {
     const indicators = document.querySelectorAll('.indicator');
-    const realIndex = currentIndex % cards.length;
+    const totalIndicators = Math.max(1, cards.length - cardsToShow + 1);
+    const realIndex = Math.min(currentIndex, totalIndicators - 1);
+    
     indicators.forEach((indicator, index) => {
       indicator.classList.toggle('active', index === realIndex);
     });
@@ -97,25 +135,27 @@ function initCarousel() {
 
   // Update toggle button text
   function updateToggleButton() {
-    const totalSlides = cards.length;
-    const currentSlide = (currentIndex % totalSlides) + 1;
-    toggleBtn.textContent = `Member ${currentSlide} of ${totalSlides}`;
+    const totalMembers = cards.length;
+    const currentMember = (currentIndex % totalMembers) + 1;
+    toggleBtn.textContent = `Member ${currentMember} of ${totalMembers}`;
   }
 
   // Navigation
   function goToSlide(index) {
-    currentIndex = index;
+    const maxIndex = Math.max(0, cards.length - cardsToShow);
+    currentIndex = Math.min(Math.max(0, index), maxIndex);
     updateCarousel(true);
   }
 
   function nextSlide() {
     if (isAnimating) return;
     
-    currentIndex++;
+    const maxIndex = Math.max(0, cards.length - cardsToShow);
     
-    if (currentIndex >= 4) {
-      currentIndex = 0;
-      gsap.set(carousel, { x: 0 });
+    if (currentIndex >= maxIndex) {
+      currentIndex = 0; // Loop back to start
+    } else {
+      currentIndex++;
     }
     
     updateCarousel(true);
@@ -124,12 +164,12 @@ function initCarousel() {
   function prevSlide() {
     if (isAnimating) return;
     
-    currentIndex--;
+    const maxIndex = Math.max(0, cards.length - cardsToShow);
     
-    if (currentIndex < 0) {
-      currentIndex = 3;
-      const offset = -currentIndex * cardWidth;
-      gsap.set(carousel, { x: offset });
+    if (currentIndex <= 0) {
+      currentIndex = maxIndex; // Loop to end
+    } else {
+      currentIndex--;
     }
     
     updateCarousel(true);
@@ -184,7 +224,7 @@ function initCarousel() {
     }
   });
 
-  // Touch/swipe handling
+  // Touch/swipe handling with better mobile support
   let startX = 0;
   let currentX = 0;
   let isDragging = false;
@@ -194,28 +234,28 @@ function initCarousel() {
     currentX = startX;
     isDragging = true;
     stopAutoPlay();
-  });
+  }, { passive: true });
 
   carousel.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
-    e.preventDefault();
     currentX = e.touches[0].clientX;
-  });
+  }, { passive: true });
 
   carousel.addEventListener('touchend', () => {
     if (!isDragging) return;
     
     const diffX = startX - currentX;
+    const swipeThreshold = 50; // pixels
     
-    if (diffX > 50) {
+    if (diffX > swipeThreshold) {
       nextSlide();
-    } else if (diffX < -50) {
+    } else if (diffX < -swipeThreshold) {
       prevSlide();
     }
     
     isDragging = false;
     if (autoPlayToggle.checked) startAutoPlay();
-  });
+  }, { passive: true });
 
   // Mouse drag support
   carousel.addEventListener('mousedown', (e) => {
@@ -235,10 +275,11 @@ function initCarousel() {
     if (!isDragging) return;
     
     const diffX = startX - currentX;
+    const swipeThreshold = 50;
     
-    if (diffX > 50) {
+    if (diffX > swipeThreshold) {
       nextSlide();
-    } else if (diffX < -50) {
+    } else if (diffX < -swipeThreshold) {
       prevSlide();
     }
     
@@ -258,6 +299,7 @@ function initCarousel() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       calculateCardWidth();
+      createIndicators();
       updateCarousel(false);
     }, 250);
   });
@@ -293,10 +335,14 @@ function initAnimations() {
   const cards = document.querySelectorAll('.team-card');
   cards.forEach(card => {
     card.addEventListener('mouseenter', () => {
-      gsap.to(card, { y: -10, duration: 0.3, ease: "power2.out" });
+      if (window.innerWidth > 768) { // Only on desktop
+        gsap.to(card, { y: -10, duration: 0.3, ease: "power2.out" });
+      }
     });
     card.addEventListener('mouseleave', () => {
-      gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" });
+      if (window.innerWidth > 768) { // Only on desktop
+        gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" });
+      }
     });
   });
 }

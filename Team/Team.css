@@ -284,92 +284,102 @@ body {
   font-weight: 700;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .entry-title {
-    font-size: 2rem;
+@media (max-width: 1024px) {
+  .carousel-container {
+    max-width: 90%;
+    min-height: 450px;
   }
-
+  
   .team-card {
-    flex: 0 0 250px;
-    height: 350px;
+    flex: 0 0 280px !important;
+    height: 380px !important;
   }
+}
 
-  .carousel-controls {
-    padding: 0;
+@media (max-width: 768px) {
+  .carousel-container {
+    max-width: 95%;
+    min-height: 400px;
   }
-
+  
+  .team-card {
+    flex: 0 0 240px !important;
+    height: 340px !important;
+  }
+  
   .card-back-overlay {
-    padding: 1.5rem 1.2rem;
+    padding: 1.2rem 1rem;
   }
-
+  
+  .card-back-overlay h2 {
+    font-size: 1.1rem;
+  }
+  
   .card-back-overlay p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     -webkit-line-clamp: 5;
-  }
-
-  .card-back-overlay .Socials {
-    gap: 16px;
-  }
-
-  .card-back-overlay .Socials a {
-    width: 28px;
-    height: 28px;
-  }
-
-  .toggle-btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-    margin: 0 0.5rem;
-  }
-
-  .carousel-controls {
-    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
-  .text {
-    padding: 1rem;
+  .carousel-container {
+    max-width: 100%;
+    min-height: 350px;
+    padding: 0 10px;
   }
-
+  
+  .team-carousel {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  
   .team-card {
-    flex: 0 0 200px;
-    height: 300px;
+    flex: 0 0 200px !important;
+    height: 300px !important;
   }
-
+  
   .card-back-overlay {
-    padding: 1rem;
+    padding: 1rem 0.8rem;
   }
-
+  
   .card-back-overlay h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
   }
-
+  
   .card-back-overlay p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     -webkit-line-clamp: 4;
+    margin-bottom: 0.5rem;
   }
-
-  .card-back-overlay .Socials {
-    gap: 12px;
-    padding-top: 0.5rem;
+  
+  .carousel-controls {
+    gap: 0.5rem;
   }
-
-  .card-back-overlay .Socials a {
-    width: 24px;
-    height: 24px;
+  
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
   }
-
+  
   .toggle-btn {
     padding: 8px 16px;
     font-size: 0.8rem;
-    order: 4;
-    width: 100%;
-    margin-top: 1rem;
+    margin: 0 0.5rem;
   }
+}
 
-  .carousel-controls {
-    flex-direction: column;
+/* Prevent card hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .team-card:hover .card-inner {
+    transform: none;
+  }
+  
+  .team-card:hover .card-front img {
+    transform: none;
+  }
+  
+  .team-card {
+    cursor: default;
   }
 }
