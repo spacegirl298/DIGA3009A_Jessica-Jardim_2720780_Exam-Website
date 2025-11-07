@@ -279,3 +279,52 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
+
+    // Back to top button
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    
+    if (backToTopBtn) {
+        window.addEventListener("scroll", () => {
+            backToTopBtn.style.display = window.pageYOffset > 300 ? "block" : "none";
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+
+    // Function to create game card HTML
+function createGameCard(game) {
+  const price = game.price === 0 ? "Free" : `$${game.price}`;
+  const imageUrl = game.cover_url || game.fallbackImage;
+  const description = game.short_text || game.description || "No description available.";
+  const year = game.published_at ? new Date(game.published_at).getFullYear() : "2023";
+  
+  // Create a URL-friendly slug for the game page
+  const gamePageSlug = game.slug.toLowerCase().replace(/\s+/g, '-');
+
+  return `
+    <div class="game-card" data-title="${game.title.toLowerCase()}">
+      <img src="${imageUrl}" alt="${game.title}" class="game-image" onerror="this.src='${game.fallbackImage}'; this.onerror=null;">
+      <div class="game-content">
+        <h3 class="game-title">${game.title}</h3>
+        <div class="game-meta">
+          <span><i class="fas fa-calendar"></i> ${year}</span>
+          <span class="game-price">${price}</span>
+        </div>
+        <p class="game-description">${description}</p>
+        <div class="game-buttons">
+          <a href="https://safe-dollar-studios.itch.io/${game.slug}" target="_blank" class="game-link">
+            <i class="fab fa-itch-io"></i> View on Itch.io
+          </a>
+          <a href="./game-pages/${gamePageSlug}.html" class="game-link game-link-secondary">
+            <i class="fas fa-info-circle"></i> More Info
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+}

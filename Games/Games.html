@@ -32,6 +32,7 @@
      <!--API -->
     <script src="https://static.itch.io/api.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Games</title>
 </head>
 <body>
     <!--Navbar-->
@@ -44,64 +45,32 @@
           <h1 class="entry-title">SDS GAMES</h1>
         </section>
       </section>
-      
-      <article class="hentry">
-        <div class="e-content">
-          <!-- Search Controls -->
-          <div class="search-controls">
+        <article class = "hentry">
+          <div class = "e-content">
+        <div class="search-controls">
             <input type="text" id="search-input" placeholder="Search games...">
             <button id="search-btn">Search</button>
             <button id="reset-btn">Show All</button>
-          </div>
-
-          <!-- Games Container -->
-          <div id="games-container" class="games-grid">
-            <div class="loading">
-              <div class="loading-spinner"></div>
-              <p>Loading games from Safe Dollar Studios...</p>
-            </div>
-          </div>
-          
-          <!-- Content Blocks for Game Information -->
-          <div class="content-block scroll-reveal">
-            <div class="text-block">
-              <h2>Our Game Development Philosophy</h2>
-              <p>At Safe Dollar Studios, we believe in creating games that are not only fun to play but also meaningful and engaging. Our development process focuses on:</p>
-              <ul>
-                <li><strong>Player-Centric Design</strong>We prioritize the player experience in every decision we make.</li>
-                <li><strong>Innovative Gameplay</strong>We're constantly exploring new mechanics and ideas.</li>
-                <li><strong>Quality Over Quantity</strong>We'd rather release one great game than ten mediocre ones.</li>
-                <li><strong>Community Feedback</strong>We listen to our players and incorporate their feedback.</li>
-              </ul>
-            </div>
-            
-            <!-- Flip Card Example -->
-            <div class="flip-card">
-              <div class="card-inner">
-                <img src="../Home/Images/Logo_Icon.png" alt="Game Cover" class="front">
-                <img src="../Home/Images/Logo_Icon.png" alt="Game Details" class="back">
-              </div>
-            </div>
-          </div>
-          
-          <!-- Additional Content Block -->
-          <div class="content-block scroll-reveal">
-            <div class="text-block">
-              <h3>Upcoming Projects</h3>
-              <p>We're always working on new and exciting projects. Stay tuned for announcements about our latest developments!</p>
-            </div>
-          </div>
         </div>
-      </article>
+        <section class = "content-block">
+        <div id="games-container" class="games-grid">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading games from Safe Dollar Studios...</p>
+            </div>
+        </div>
+        </section>
+        </div>
+        </article>
+    </div>
 
-      <img
+   <img
         id="backToTopBtn"
         src="../Home/Images/Back_To_Top.png"
         alt="back to top button"
         title="Go to top"
       />
     </main>
-    
     <footer></footer>
     <div id="footer-container"></div>
 </body>
