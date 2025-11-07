@@ -1,3 +1,277 @@
-body{
-    padding-top:75px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 40px 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #ff6b6b, #ffa36c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #a0a0c0;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.search-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+#search-input {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    width: 300px;
+    max-width: 100%;
+    backdrop-filter: blur(10px);
+}
+
+#search-input::placeholder {
+    color: #a0a0c0;
+}
+
+#search-btn, #reset-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #ff6b6b, #ffa36c);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#search-btn:hover, #reset-btn:hover {
+    background: linear-gradient(90deg, #ff5252, #ff8a50);
+    transform: translateY(-2px);
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.game-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.game-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-content {
+    padding: 20px;
+}
+
+.game-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #ffa36c;
+}
+
+.game-description {
+    color: #c0c0e0;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #8888cc;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.game-price {
+    font-weight: bold;
+    color: #6bff8d;
+}
+
+.game-link {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff6b6b, #ffa36c);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 100%;
+}
+
+.game-link:hover {
+    background: linear-gradient(90deg, #ff5252, #ff8a50);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: #a0a0c0;
+    grid-column: 1 / -1;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ff6b6b;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 15px;
+}
+
+.error {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: #ff6b6b;
+    grid-column: 1 / -1;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: #a0a0c0;
+    grid-column: 1 / -1;
+}
+/* Add these to your existing CSS */
+
+/* Better image error handling */
+.game-image {
+  background: linear-gradient(135deg, #2a2a4e 0%, #1a1a3e 100%);
+}
+
+/* Better loading states */
+.loading, .error, .no-results {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+/* Smooth transitions for search */
+.games-grid {
+  transition: opacity 0.3s ease;
+}
+
+.games-grid.loading {
+  opacity: 0.7;
+}
+
+/* Better error message styling */
+.error i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #ffa36c;
+}
+
+/* Responsive improvements */
+@media (max-width: 480px) {
+  .game-card {
+    margin: 0 10px;
+  }
+  
+  .game-content {
+    padding: 15px;
+  }
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #8888cc;
+    font-size: 0.9rem;
+}
+
+.itch-logo {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .search-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #search-input {
+        width: 100%;
+    }
 }

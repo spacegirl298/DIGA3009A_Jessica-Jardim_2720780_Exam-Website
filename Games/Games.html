@@ -1,49 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Jessica Jardim" />
-    <meta
-      name="description"
-      content="Get in touch with Safe Dollar Studio. Whether you have questions, collaboration ideas, or just want to say hello, we’d love to hear from you!"
-    />
-    <link rel="stylesheet" href="../Main.css" />
-    <link rel="stylesheet" href="./Games.css" />
-    <link rel="icon" href="../Home/Images/Logo_Icon.png" type="image/x-icon" />
-     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <script src="../Main.js"></script>
-    <script src="./Contact_Us.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Dollar Studios - Game Showcase</title>
+    <link rel="stylesheet" href="Games.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Safe Dollar Studios</h1>
+            <p class="subtitle">Explore our collection of creative and engaging games. Each title offers unique gameplay experiences crafted with passion and attention to detail.</p>
+        </header>
 
-    <title>Contact Us</title>
-  </head>
-  <body>
-    <header></header>
-    <div id="navbar-container"></div>
-    <main>
-       <section class="text">
-        <section class="intro">
-          <h1 class="entry-title">SDS GAMES</h1>
-        </section>
-      <img
-        id="backToTopBtn"
-        src="./homeImages/topButton.png"
-        alt="back to top button"
-        title="Go to top"
-      />
-    </main>
-    <footer></footer>
-    <div id="footer-container"></div>
-  </body>
+        <div class="search-controls">
+            <input type="text" id="search-input" placeholder="Search games...">
+            <button id="search-btn">Search</button>
+            <button id="reset-btn">Show All</button>
+        </div>
+
+        <div id="games-container" class="games-grid">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading games from Safe Dollar Studios...</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Powered by <span class="itch-logo">Itch.io</span> API | Game data courtesy of Safe Dollar Studios</p>
+        </footer>
+    </div>
+
+    <!-- Include Itch.io API -->
+    <script src="https://static.itch.io/api.js"></script>
+    <script src="Games.js"></script>
+</body>
 </html>
