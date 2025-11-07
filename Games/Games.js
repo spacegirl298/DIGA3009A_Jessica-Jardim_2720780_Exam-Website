@@ -76,7 +76,6 @@ const safeDollarGames = [
 
 let allGames = [];
 
-// Function to create game card HTML
 function createGameCard(game) {
   const price = game.price === 0 ? "Free" : `$${game.price}`;
   const imageUrl = game.cover_url || game.fallbackImage;
@@ -93,9 +92,14 @@ function createGameCard(game) {
           <span class="game-price">${price}</span>
         </div>
         <p class="game-description">${description}</p>
-        <a href="https://safe-dollar-studios.itch.io/${game.slug}" target="_blank" class="game-link">
-          <i class="fab fa-itch-io"></i> View on Itch.io
-        </a>
+        <div class="game-buttons">
+          <a href="https://safe-dollar-studios.itch.io/${game.slug}" target="_blank" class="game-link">
+            <i class="fab fa-itch-io"></i> View on Itch.io
+          </a>
+          <a href="${game.slug}.html" class="game-link game-link-secondary">
+            <i class="fas fa-info-circle"></i> More Info
+          </a>
+        </div>
       </div>
     </div>
   `;
@@ -296,35 +300,3 @@ if (document.readyState === 'loading') {
         });
     }
 
-    // Function to create game card HTML
-function createGameCard(game) {
-  const price = game.price === 0 ? "Free" : `$${game.price}`;
-  const imageUrl = game.cover_url || game.fallbackImage;
-  const description = game.short_text || game.description || "No description available.";
-  const year = game.published_at ? new Date(game.published_at).getFullYear() : "2023";
-  
-  // Create a URL-friendly slug for the game page
-  const gamePageSlug = game.slug.toLowerCase().replace(/\s+/g, '-');
-
-  return `
-    <div class="game-card" data-title="${game.title.toLowerCase()}">
-      <img src="${imageUrl}" alt="${game.title}" class="game-image" onerror="this.src='${game.fallbackImage}'; this.onerror=null;">
-      <div class="game-content">
-        <h3 class="game-title">${game.title}</h3>
-        <div class="game-meta">
-          <span><i class="fas fa-calendar"></i> ${year}</span>
-          <span class="game-price">${price}</span>
-        </div>
-        <p class="game-description">${description}</p>
-        <div class="game-buttons">
-          <a href="https://safe-dollar-studios.itch.io/${game.slug}" target="_blank" class="game-link">
-            <i class="fab fa-itch-io"></i> View on Itch.io
-          </a>
-          <a href="./game-pages/${gamePageSlug}.html" class="game-link game-link-secondary">
-            <i class="fas fa-info-circle"></i> More Info
-          </a>
-        </div>
-      </div>
-    </div>
-  `;
-}
