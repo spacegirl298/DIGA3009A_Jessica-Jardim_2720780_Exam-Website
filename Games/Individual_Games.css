@@ -1,3 +1,23 @@
+main {
+  padding-top: 75px;
+  
+}
+
+/* Page Header */
+.entry-title {
+  background-color: #ed6a18;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  padding: 20px 0;
+  margin: 0 0 40px 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  border-bottom: 1px solid #783e02;
+  color: #fefefc;
+}
+
+
 /* Game Detail Page Styles */
 .game-detail-header {
   display: grid;
