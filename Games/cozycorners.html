@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Jessica Jardim" />
@@ -9,10 +9,9 @@
       content="Lab Rumble - A fast-paced 2D projectile brawler where two scientists fight for the last escape ship off a dying Earth."
     />
     <!--CSS Links-->
-    <link rel="stylesheet" href="./Individual_Games.css">
-    <link rel="stylesheet" href="../Main.css"/>
-    <!--JavaScript Links-->
-    <script src="./Individual_Games.js"></script>
+    <link rel="stylesheet" href="Individual_Games.css" />
+    <link rel="stylesheet" href="../Main.css" />
+    <script src="Individual_Games.js"></script>
     <script src="../Main.js"></script>
     <!--Icon-->
     <link rel="icon" href="../Home/Images/Logo_Icon.png" type="image/x-icon" />
@@ -21,25 +20,76 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <title>CozyCorners</title>
-</head>
-<body>
+  </head>
+  <body>
     <!--Navbar-->
     <header></header>
     <div id="navbar-container"></div>
-    
+
     <main>
-           <!--Page Header-->
+      <!--Page Header-->
       <section class="text">
         <section class="intro">
           <h1 class="entry-title">COZYCORNERS</h1>
         </section>
       </section>
-        
+
+      <div class="content-container">
+        <p>
+          Step into the mess and make magic in CozyCorners—an isometric cleaning
+          and decorating game where you turn chaotic homes into warm, inviting,
+          and beautifully personalized spaces. Tackle cluttered rooms at your
+          own pace as you sweep, scrub, vacuum, and tidy up every corner until
+          everything feels just right. Once the space is spotless, unleash your
+          creativity by choosing furniture, colors, and décor that reflect your
+          style. From picking the perfect wallpaper to arranging cozy details,
+          every action is crafted to feel deeply satisfying, calming, and
+          visually rewarding.
+        </p>
+
+        <div class="carousel-container">
+          <div class="carousel-main">
+            <img
+              src="./Images/CozyCorners_Carousel_1.png"
+              alt="Lab Rumble gameplay"
+              class="main-carousel-image"
+            />
+            <button class="carousel-arrow prev" aria-label="Previous image">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-arrow next" aria-label="Next image">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div class="carousel-thumbnails">
+            <img
+              src="./Images/CozyCorners_Carousel_1.png"
+              data-fullsize="./Images/CozyCorners_Carousel_1.png"
+              alt="Lab Rumble screenshot 1"
+              class="thumbnail active"
+            />
+          </div>
+        </div>
+
+        <div class="download-section">
+          <a
+            href="https://jessica-jardim.itch.io/cozycorners"
+            class="download-btn"
+            target="_blank"
+          >
+            <img src="../Home/Images/Itch_Logo_Black.png" alt="Itch.io logo" />
+            Download on Itch.io
+          </a>
+        </div>
+      </div>
     </main>
 
     <footer></footer>
     <div id="footer-container"></div>
-</body>
+  </body>
 </html>
