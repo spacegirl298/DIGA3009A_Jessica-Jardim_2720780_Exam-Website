@@ -51,7 +51,6 @@ html {
   opacity: 0;
 }
 
-/* Particle effects */
 .particle {
   position: absolute;
   width: 8px;
@@ -60,7 +59,6 @@ html {
   pointer-events: none;
 }
 
-/* Loading text */
 .loading-text {
   position: absolute;
   bottom: 30%;
@@ -95,11 +93,7 @@ html {
   font-size: 4.5rem;
   margin-bottom: 1rem;
   font-weight: 800;
-  background: linear-gradient(
-    45deg,
-    var(--primary-color),
-    var(--primary-color)
-  );
+  background: linear-gradient(45deg, var(--primary-color), var(--primary-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -107,7 +101,6 @@ html {
 
 .hero p {
   font-size: 1.2rem;
-  
   opacity: 0.9;
 }
 
@@ -131,7 +124,7 @@ html {
   box-shadow: 0 10px 20px rgba(237, 106, 24, 0.3);
 }
 
-/* Floating elements in hero */
+/* Floating Elements */
 .floating-element {
   position: absolute;
   border-radius: 50%;
@@ -205,7 +198,7 @@ html {
   left: 25%;
 }
 
-/* Floating circles */
+/* Floating Circles */
 .floating-circles {
   position: absolute;
   width: 100%;
@@ -229,7 +222,6 @@ html {
   opacity: 0.8;
 }
 
-/* Sizes for different circles */
 .floating-circle.small {
   width: 40px;
   height: 40px;
@@ -245,7 +237,6 @@ html {
   height: 100px;
 }
 
-/* Colors for different circles */
 .floating-circle.primary {
   background: var(--primary-color);
 }
@@ -258,7 +249,7 @@ html {
   background: var(--primary-color);
 }
 
-/* Enhanced Carousel - Fixed Alignment */
+/* Carousel Section */
 .carousel-section {
   padding: 80px 0;
   position: relative;
@@ -304,7 +295,7 @@ html {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(237, 106, 24, 0.5);
   color: white;
   border: none;
   font-size: 2rem;
@@ -317,7 +308,7 @@ html {
 
 .carousel-btn:hover,
 .carousel-btn:focus {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(237, 106, 24, 0.7);
 }
 
 .prev-btn {
@@ -353,33 +344,9 @@ html {
   transform: scale(1.2);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .carousel-slide img {
-    height: 300px;
-  }
-  
-  .carousel-btn {
-    font-size: 1.5rem;
-    padding: 8px 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-slide img {
-    height: 250px;
-  }
-  
-  .carousel-btn {
-    font-size: 1.2rem;
-    padding: 6px 10px;
-  }
-}
-
 /* Navigation Cards Section */
 .nav-section {
   padding: 80px 0;
-
 }
 
 .nav-container {
@@ -403,7 +370,6 @@ html {
 
 .nav-card:hover {
   transform: translateY(-10px);
-
 }
 
 .nav-card img {
@@ -422,7 +388,6 @@ html {
   bottom: 0;
   left: 0;
   right: 0;
-
   padding: 10px;
   color: white;
   transform: translateY(100%);
@@ -438,7 +403,6 @@ html {
   margin-bottom: 10px;
   font-size: 1.5rem;
 }
-
 
 /* Back to Top Button */
 #backToTopBtn {
@@ -513,6 +477,11 @@ html {
   .footer-content {
     flex-direction: column;
   }
+
+  .carousel-btn {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -532,5 +501,14 @@ html {
 
   .hero p {
     font-size: 1rem;
+  }
+
+  .carousel-slide img {
+    height: 250px;
+  }
+
+  .carousel-btn {
+    font-size: 1.2rem;
+    padding: 6px 10px;
   }
 }

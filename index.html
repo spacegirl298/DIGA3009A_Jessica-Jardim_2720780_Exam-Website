@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--Meta Data-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Jessica Jardim" />
@@ -9,30 +10,31 @@
       content="Welcome to Safe Dollar Studios, an indie game studio whose aim is to create playful, 
       engaging games. Explore our latest games, learn more about us and contact us for collaborations."
     />
-
+    <!--CSS Links-->
     <link rel="stylesheet" href="./Home/Home.css" />
-        <link rel="stylesheet" href="./Main.css" />
-   
+    <link rel="stylesheet" href="./Main.css" />
+    <!-- JavaScript Links-->
+    <script src="./Home/Home.js" defer></script>
+    <script src="./Main.js"></script>
+    <!--Icon-->
     <link rel="icon" href="./Home/Images/Logo_Icon.png" type="image/x-icon" />
+    <!--Font Links-->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-     <!-- GSAP Library -->
+    <!-- GSAP Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <script src="./Home/Home.js" defer></script>
-    <script src = "./Main.js"></script>
 
     <title>Safe Dollar Studios | Home</title>
   </head>
   <body>
-     <!--Navbar-->
+    <!--Navbar-->
     <header></header>
     <div id="navbar-container"></div>
-    
+
     <main>
       <!-- Hero Section -->
       <section class="hero" aria-labelledby="hero-heading">
@@ -44,52 +46,104 @@
         <div class="floating-element" aria-hidden="true"></div>
         <div class="floating-element" aria-hidden="true"></div>
         <div class="floating-element" aria-hidden="true"></div>
-        
+
         <div class="hero-content">
           <h1 id="hero-heading">Safe Dollar Studios</h1>
-          <p>Creating playful, engaging games that spark imagination and bring joy to players worldwide.</p>
+          <p>
+            Creating playful, engaging games that spark imagination and bring
+            joy to players worldwide.
+          </p>
           <a href="./Games/Games.html" class="cta-button">Explore Our Games</a>
         </div>
       </section>
-      
-      <!-- Carousel Section -->
-      <section class="carousel-section" aria-labelledby="featured-games-heading">
+
+      <!-- Carousel -->
+      <section
+        class="carousel-section"
+        aria-labelledby="featured-games-heading"
+      >
+        <h2
+          id="featured-games-heading"
+          class="section-title"
+          style="text-align: center; margin-bottom: 2rem"
+        >
+          Featured Games
+        </h2>
         <div class="carousel-container">
           <div class="carousel-track">
             <div class="carousel-slide current-slide">
-              <img src="./Home/Images/Carousel_1 .png" alt="Screenshot from our latest adventure game" />
+              <img
+                src="./Home/Images/Carousel_1.png"
+                alt="Screenshot from our latest adventure game"
+              />
             </div>
             <div class="carousel-slide">
-              <img src="./Home/Images/Carousel_2.jpg" alt="Action scene from our multiplayer shooter" />
+              <img
+                src="./Home/Images/Carousel_2.jpg"
+                alt="Action scene from our multiplayer shooter"
+              />
             </div>
             <div class="carousel-slide">
-              <img src="./Home/Images/Caousel_5.jpg" alt="Puzzle gameplay from our strategy title" />
+              <img
+                src="./Home/Images/Carousel_5.jpg"
+                alt="Puzzle gameplay from our strategy title"
+              />
             </div>
             <div class="carousel-slide">
-              <img src="./Home/Images/Carousel_5.jpg" alt="Exploration in our open-world game" />
+              <img
+                src="./Home/Images/Carousel_5.jpg"
+                alt="Exploration in our open-world game"
+              />
             </div>
           </div>
-          
-          <button class="carousel-btn prev-btn" aria-label="Previous slide">&#10094;</button>
-          <button class="carousel-btn next-btn" aria-label="Next slide">&#10095;</button>
-          
-          <div class="carousel-indicators" aria-label="Carousel slide indicators">
-            <button class="indicator active" data-index="0" aria-label="Go to slide 1"></button>
-            <button class="indicator" data-index="1" aria-label="Go to slide 2"></button>
-            <button class="indicator" data-index="2" aria-label="Go to slide 3"></button>
-            <button class="indicator" data-index="3" aria-label="Go to slide 4"></button>
-            <button class="indicator" data-index="4" aria-label="Go to slide 5"></button>
+
+          <button class="carousel-btn prev-btn" aria-label="Previous slide">
+            &#10094;
+          </button>
+          <button class="carousel-btn next-btn" aria-label="Next slide">
+            &#10095;
+          </button>
+
+          <div
+            class="carousel-indicators"
+            aria-label="Carousel slide indicators"
+          >
+            <button
+              class="indicator active"
+              data-index="0"
+              aria-label="Go to slide 1"
+            ></button>
+            <button
+              class="indicator"
+              data-index="1"
+              aria-label="Go to slide 2"
+            ></button>
+            <button
+              class="indicator"
+              data-index="2"
+              aria-label="Go to slide 3"
+            ></button>
+            <button
+              class="indicator"
+              data-index="3"
+              aria-label="Go to slide 4"
+            ></button>
           </div>
         </div>
       </section>
-      
+
       <!-- Navigation Cards Section -->
       <section class="nav-section" aria-labelledby="explore-heading">
-        <h2 id="explore-heading" class="section-title">Explore Safe Dollar Studios</h2>
+        <h2 id="explore-heading" class="section-title">
+          Explore Safe Dollar Studios
+        </h2>
         <div class="nav-container">
           <div class="nav-card">
             <a href="./Games/Games.html" aria-label="View our games">
-              <img src="./Home/Images/Game_Card.png" alt="Collection of our games" />
+              <img
+                src="./Home/Images/Game_Card.png"
+                alt="Collection of our games"
+              />
               <div class="card-overlay">
                 <h3>Our Games</h3>
                 <p>Discover our portfolio of innovative and engaging titles</p>
@@ -98,7 +152,10 @@
           </div>
           <div class="nav-card">
             <a href="./Team/Team.html" aria-label="Learn about our studio">
-              <img src="./Home/Images/About_Us_Card.png" alt="Our studio workspace" />
+              <img
+                src="./Home/Images/About_Us_Card.png"
+                alt="Our studio workspace"
+              />
               <div class="card-overlay">
                 <h3>About Us</h3>
                 <p>Learn about our mission and creative philosophy</p>
@@ -107,7 +164,10 @@
           </div>
           <div class="nav-card">
             <a href="./Team/Team.html" aria-label="Meet our team">
-              <img src="./Home/Images/Team_Card.png" alt="Our talented team members" />
+              <img
+                src="./Home/Images/Team_Card.png"
+                alt="Our talented team members"
+              />
               <div class="card-overlay">
                 <h3>Our Team</h3>
                 <p>Meet the passionate creators behind our games</p>
@@ -115,8 +175,14 @@
             </a>
           </div>
           <div class="nav-card">
-            <a href="./Contact_Us/Contact_Us.html" aria-label="Get in touch with us">
-              <img src="./Home/Images/Contact_Us_Card.png" alt="Contact us illustration" />
+            <a
+              href="./Contact_Us/Contact_Us.html"
+              aria-label="Get in touch with us"
+            >
+              <img
+                src="./Home/Images/Contact_Us_Card.png"
+                alt="Contact us illustration"
+              />
               <div class="card-overlay">
                 <h3>Contact Us</h3>
                 <p>Get in touch for collaborations or inquiries</p>
@@ -125,21 +191,27 @@
           </div>
         </div>
       </section>
-      
-      <button
-        id="backToTopBtn"
-        aria-label="Back to top"
-        title="Go to top"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <button id="backToTopBtn" aria-label="Back to top" title="Go to top">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 19V5M12 5L5 12M12 5L19 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </button>
     </main>
-     <!--Footer Bar-->
+    <!--Footer Bar-->
     <footer></footer>
     <div id="footer-container"></div>
-    
-  
   </body>
 </html>

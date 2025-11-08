@@ -1,12 +1,8 @@
-// Home.js - Fixed version
-
 document.addEventListener("DOMContentLoaded", function () {
-  // Register ScrollTrigger plugin
   if (typeof gsap !== "undefined" && gsap.registerPlugin) {
     gsap.registerPlugin(ScrollTrigger);
   }
 
-  // Initialize all functionality
   initLogoReveal();
   initHeroAnimations();
   initScrollAnimations();
@@ -15,11 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
   initNavigation();
 
   function initLogoReveal() {
-    // Create logo reveal elements
     const logoRevealContainer = document.createElement("div");
     logoRevealContainer.className = "logo-reveal-container";
 
-    // Add gradient background elements
     const gradientBg = document.createElement("div");
     gradientBg.style.position = "absolute";
     gradientBg.style.top = "0";
@@ -51,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     logoRevealContainer.appendChild(loadingText);
     document.body.prepend(logoRevealContainer);
 
-    // Create particles
     for (let i = 0; i < 20; i++) {
       const particle = document.createElement("div");
       particle.className = "particle";
@@ -62,10 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const particles = document.querySelectorAll(".particle");
 
-    // GSAP Animation Timeline
     const revealTimeline = gsap.timeline({
       onComplete: () => {
-        // Remove the container after animation completes
         setTimeout(() => {
           logoRevealContainer.style.display = "none";
         }, 500);
@@ -73,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     revealTimeline
-      // Initial state
+
       .set(logoCircle, {
         scale: 0,
         rotation: 0,
@@ -88,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
         opacity: 0,
       })
 
-      // Circle grow and rotate
       .to(logoCircle, {
         duration: 1.5,
         scale: 1,
@@ -97,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
         borderColor: "var(--primary-color)",
       })
 
-      // Loading text fade in
       .to(
         loadingText,
         {
@@ -108,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "-=1"
       )
 
-      // Logo text reveal
       .to(
         logoInner,
         {
@@ -120,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "-=0.5"
       )
 
-      // Particle explosion
       .to(
         particles,
         {
@@ -135,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "-=0.5"
       )
 
-      // Particle fade out
       .to(particles, {
         duration: 0.8,
         opacity: 0,
@@ -143,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ease: "power2.in",
       })
 
-      // Everything fade out
       .to([logoCircle, logoInner, loadingText], {
         duration: 0.8,
         opacity: 0,
@@ -151,15 +136,12 @@ document.addEventListener("DOMContentLoaded", function () {
         ease: "power2.inOut",
       });
 
-    // Add a subtle background color transition
     gsap.to(logoRevealContainer, {
       duration: 2,
       backgroundColor: "rgba(25, 25, 25, 0)",
       ease: "power2.inOut",
     });
   }
-
-  // Initialize navigation functionality
   function initNavigation() {
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
@@ -169,12 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
         hamburger.classList.toggle("active");
         navMenu.classList.toggle("active");
 
-        // Update aria-expanded attribute
         const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
         hamburger.setAttribute("aria-expanded", !isExpanded);
       });
 
-      // Close menu when clicking on a link
       document.querySelectorAll(".nav-link").forEach((link) => {
         link.addEventListener("click", () => {
           hamburger.classList.remove("active");
@@ -185,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Hero section animations
+  // Hero section
   function initHeroAnimations() {
     const heroTimeline = gsap.timeline();
     heroTimeline
@@ -216,7 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "-=0.3"
       );
 
-    // Floating elements animation
     gsap.to(".floating-element", {
       y: "random(-30, 30)",
       x: "random(-20, 20)",
@@ -228,17 +207,13 @@ document.addEventListener("DOMContentLoaded", function () {
       stagger: 0.2,
     });
 
-    // Add floating circles to hero section
     addFloatingCircles();
   }
-
-  // New function to add floating circles
   function addFloatingCircles() {
     const heroSection = document.querySelector(".hero");
     const floatingCirclesContainer = document.createElement("div");
     floatingCirclesContainer.className = "floating-circles";
 
-    // Create multiple floating circles
     const circleCount = 12;
     const sizes = ["small", "medium", "large"];
     const colors = ["primary", "accent", "light"];
@@ -247,7 +222,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const circle = document.createElement("div");
       circle.className = `floating-circle ${sizes[i % 3]} ${colors[i % 3]}`;
 
-      // Random position
       const randomTop = Math.random() * 100;
       const randomLeft = Math.random() * 100;
 
@@ -259,7 +233,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     heroSection.appendChild(floatingCirclesContainer);
 
-    // Animate floating circles
     gsap.to(".floating-circle", {
       y: "random(-40, 40)",
       x: "random(-30, 30)",
@@ -272,9 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Scroll-triggered animations
   function initScrollAnimations() {
-    // Carousel animation on scroll
     gsap.from(".carousel-container", {
       scrollTrigger: {
         trigger: ".carousel-section",
@@ -288,7 +259,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ease: "power2.out",
     });
 
-    // Navigation cards animation
     gsap.from(".nav-card", {
       scrollTrigger: {
         trigger: ".nav-section",
@@ -303,7 +273,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Carousel functionality - Fixed version
   function initCarousel() {
     const track = document.querySelector(".carousel-track");
     const slides = Array.from(track.children);
@@ -311,17 +280,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevButton = document.querySelector(".prev-btn");
     const indicators = document.querySelectorAll(".indicator");
 
-    if (!track || slides.length === 0) return;
+    if (!track || slides.length === 0) {
+      console.error("Carousel elements not found");
+      return;
+    }
 
-    const slideWidth = slides[0].getBoundingClientRect().width;
     let currentIndex = 0;
     let autoSlideInterval;
     let isTransitioning = false;
 
-    // Arrange slides next to each other
+    const slideWidth = slides[0].getBoundingClientRect().width;
+
     slides.forEach((slide, index) => {
       slide.style.left = slideWidth * index + "px";
     });
+
     document.querySelectorAll(".carousel-slide img").forEach((img) => {
       img.addEventListener("error", function () {
         console.warn("Image failed to load:", this.src);
@@ -329,15 +302,15 @@ document.addEventListener("DOMContentLoaded", function () {
         this.alt = "Image not available";
       });
     });
+
     const moveToSlide = (targetIndex) => {
-      if (isTransitioning) return;
+      if (isTransitioning || targetIndex < 0 || targetIndex >= slides.length)
+        return;
 
       isTransitioning = true;
 
-      // Update current index
       currentIndex = targetIndex;
 
-      // Animate to target slide
       gsap.to(track, {
         duration: 0.5,
         x: -targetIndex * slideWidth,
@@ -347,15 +320,14 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
 
-      // Update current slide class
       slides.forEach((slide) => slide.classList.remove("current-slide"));
       slides[targetIndex].classList.add("current-slide");
 
-      // Update indicators
       indicators.forEach((indicator) => indicator.classList.remove("active"));
-      indicators[targetIndex].classList.add("active");
+      if (indicators[targetIndex]) {
+        indicators[targetIndex].classList.add("active");
+      }
 
-      // Update aria-labels for accessibility
       indicators.forEach((indicator, index) => {
         indicator.setAttribute("aria-label", `Go to slide ${index + 1}`);
         if (index === targetIndex) {
@@ -376,21 +348,23 @@ document.addEventListener("DOMContentLoaded", function () {
       moveToSlide(prevIndex);
     };
 
-    // When click next button
-    nextButton.addEventListener("click", nextSlide);
+    if (nextButton) {
+      nextButton.addEventListener("click", nextSlide);
+    }
 
-    // When click prev button
-    prevButton.addEventListener("click", prevSlide);
+    if (prevButton) {
+      prevButton.addEventListener("click", prevSlide);
+    }
 
-    // When click indicator
-    indicators.forEach((indicator) => {
+    indicators.forEach((indicator, index) => {
       indicator.addEventListener("click", () => {
         const targetIndex = parseInt(indicator.getAttribute("data-index"));
-        moveToSlide(targetIndex);
+        if (!isNaN(targetIndex)) {
+          moveToSlide(targetIndex);
+        }
       });
     });
 
-    // Auto slide every 5 seconds
     const startAutoSlide = () => {
       autoSlideInterval = setInterval(nextSlide, 5000);
     };
@@ -399,21 +373,16 @@ document.addEventListener("DOMContentLoaded", function () {
       clearInterval(autoSlideInterval);
     };
 
-    // Pause auto-slide on hover
     const carouselContainer = document.querySelector(".carousel-container");
     if (carouselContainer) {
       carouselContainer.addEventListener("mouseenter", stopAutoSlide);
       carouselContainer.addEventListener("mouseleave", startAutoSlide);
-
-      // Pause auto-slide when focused
       carouselContainer.addEventListener("focusin", stopAutoSlide);
       carouselContainer.addEventListener("focusout", startAutoSlide);
     }
 
-    // Start auto-slide
     startAutoSlide();
 
-    // Handle window resize
     window.addEventListener("resize", () => {
       const newSlideWidth = slides[0].getBoundingClientRect().width;
       slides.forEach((slide, index) => {
@@ -422,10 +391,31 @@ document.addEventListener("DOMContentLoaded", function () {
       moveToSlide(currentIndex);
     });
 
-    // Initialize first slide
     moveToSlide(0);
   }
-  // Add smooth scrolling for anchor links
+
+  // Back to top
+  function initBackToTop() {
+    const backToTopBtn = document.getElementById("backToTopBtn");
+
+    if (backToTopBtn) {
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.classList.add("visible");
+        } else {
+          backToTopBtn.classList.remove("visible");
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    }
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();

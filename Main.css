@@ -28,7 +28,7 @@ h3{
 }
 
 
-/* ========= NAVBAR ========= */
+/*Navbar*/
 .navbar {
   background-color: #191919;
   position: fixed;
@@ -50,16 +50,16 @@ h3{
   padding: 12px 24px;
 }
 
-/* SDS logo (inverted white) */
+/* SDS logo*/
 .nav_logo {
   height: 30px;
   cursor: pointer;
   display: block;
   filter: brightness(0) invert(1);
-  margin-left: -90px; /* Adjust this value as needed */
+  margin-left: -90px; 
 }
 
-/* Menu aligned to the right */
+
 .nav-menu {
   display: flex;
   list-style: none;
@@ -68,7 +68,6 @@ h3{
   align-items: center;
 }
 
-/* Nav links (white) */
 .nav-menu li a {
   text-decoration: none;
   color: #fefefc;
@@ -110,7 +109,7 @@ h3{
   transition: all 0.28s ease;
 }
 
-/* ===== Responsive Navbar ===== */
+/*Responsive Layout*/
 @media (max-width: 920px) {
   .nav-container {
     padding: 12px 18px;
@@ -142,7 +141,7 @@ h3{
   }
 }
 
-/* ========= FOOTER ========= */
+/* Footer*/
 html,
 body {
   height: 100%;
@@ -194,7 +193,7 @@ footer {
   text-decoration: none;
 }
 
-/* White icons */
+
 .footer-nav img {
   width: 30px;
   height: auto;
@@ -203,7 +202,6 @@ footer {
   transition: transform 0.2s ease, opacity 0.3s ease, filter 0.3s ease;
 }
 
-/* Hover tint */
 .footer-nav img:hover {
   transform: scale(1.1);
   opacity: 0.95;
@@ -223,7 +221,7 @@ footer {
   margin-top: 5px;
 }
 
-/* Responsive footer */
+/*Responsive Layout*/
 @media (max-width: 768px) {
   .footer-nav ul {
     gap: 15px;

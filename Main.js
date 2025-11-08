@@ -7,24 +7,23 @@ window.addEventListener("DOMContentLoaded", function () {
 
   if (!header || !footer) return;
 
-  // Get current page path
   const currentPath = window.location.pathname;
-  
-  // Determine if we're on homepage or in a subdirectory
-  const isHome = currentPath.endsWith("/") || 
-                 currentPath.endsWith("index.html") || 
-                 currentPath.endsWith(basePath) ||
-                 currentPath.endsWith(basePath + "index.html");
 
-  // Set path prefix based on location
+  // Determine if we're on homepage or in a subdirectory
+  const isHome =
+    currentPath.endsWith("/") ||
+    currentPath.endsWith("index.html") ||
+    currentPath.endsWith(basePath) ||
+    currentPath.endsWith(basePath + "index.html");
+
   let pathPrefix;
   if (isHome) {
-    pathPrefix = "./"; // Root level
+    pathPrefix = "./";
   } else {
-    pathPrefix = "../"; // Subdirectory level
+    pathPrefix = "../";
   }
 
-  // --- NAVBAR ---
+  // Navbar
   header.innerHTML = `
     <nav class="navbar">
       <div class="nav-container">
@@ -45,18 +44,19 @@ window.addEventListener("DOMContentLoaded", function () {
     </nav>
   `;
 
-  // --- Invert SDS logo to white ---
   const logo = document.querySelector(".nav_logo");
   if (logo) {
     logo.style.filter = "brightness(0) invert(1)";
   }
 
-  // --- Highlight current page & disable click ---
   (function () {
     const current = window.location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".nav-menu a").forEach((a) => {
       const linkFile = a.getAttribute("href").split("/").pop();
-      if (linkFile === current || (current === "" && linkFile === "index.html")) {
+      if (
+        linkFile === current ||
+        (current === "" && linkFile === "index.html")
+      ) {
         a.classList.add("active");
         a.style.pointerEvents = "none";
         a.style.opacity = "0.6";
@@ -65,7 +65,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   })();
 
-  // --- FOOTER ---
+  //  Footer
   footer.innerHTML = `
     <nav class="footer-nav">
       <ul>
@@ -96,7 +96,6 @@ window.addEventListener("DOMContentLoaded", function () {
     </nav>
   `;
 
-  // --- Hamburger toggle ---
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
 
@@ -107,7 +106,6 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // --- Dark mode preference ---
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
   document.body.classList.toggle("dark-mode", prefersDark.matches);
   prefersDark.addEventListener("change", (e) => {
