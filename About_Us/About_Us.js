@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Card flip functionality
+    // Card flip 
     const flipCards = document.querySelectorAll(".flip-card");
 
     flipCards.forEach((flipCard) => {
         const card = flipCard.querySelector(".card-inner");
         let flipped = false;
         
-        // Create glow element
+        // glow 
         const glowElement = document.createElement('div');
         glowElement.className = 'card-glow';
         Object.assign(glowElement.style, {
@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
         flipCard.style.position = 'relative';
         flipCard.appendChild(glowElement);
 
-        // Hover effect
         flipCard.addEventListener("mouseenter", () => {
             const targetRotation = flipped ? 160 : 20;
             
@@ -63,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Click to flip
         flipCard.addEventListener("click", () => {
             flipped = !flipped;
             
