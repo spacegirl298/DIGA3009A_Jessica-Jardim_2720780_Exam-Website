@@ -170,7 +170,7 @@ main {
   transform: scale(1.05);
 }
 
-/* Responsive adjustments for carousel */
+/*Responsive Layout*/
 @media (max-width: 768px) {
   .main-carousel-image {
     height: 300px;
@@ -196,7 +196,7 @@ main {
   }
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .entry-title {
     font-size: 2.2rem;

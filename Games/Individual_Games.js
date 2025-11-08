@@ -1,9 +1,9 @@
-// Lab Rumble page JavaScript
+
 
 document.addEventListener('DOMContentLoaded', function() {
-    // GSAP Animations
+
     function initGSAPAnimations() {
-        // Animation 1: Title entrance with bounce effect
+
         gsap.from('.entry-title', {
             duration: 1.2,
             y: -100,
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             delay: 0.3
         });
 
-        // Animation 2: Content container slide-in with fade
+      
         gsap.from('.content-container', {
             duration: 1,
             y: 50,
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
             delay: 0.8
         });
 
-        // Animation 3: Staggered text reveal animation
         gsap.from('.content-container p', {
             duration: 1.2,
             y: 30,
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             delay: 1.2
         });
 
-        // Animation 4: Download button pulsing animation on hover
+       
         const downloadBtn = document.querySelector('.download-btn');
         if (downloadBtn) {
             const hoverAnimation = gsap.to(downloadBtn, {
@@ -56,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
-            // Initial attention-grabbing pulse
+        
             gsap.to(downloadBtn, {
                 scale: 1.1,
                 duration: 0.8,
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Carousel functionality
+
     const mainImage = document.querySelector('.main-carousel-image');
     const thumbnails = document.querySelectorAll('.thumbnail');
     const prevButton = document.querySelector('.carousel-arrow.prev');
@@ -76,9 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentIndex = 0;
     
-    // Function to update carousel with GSAP animation
+  
     function updateCarousel(index) {
-        // GSAP fade animation for main image
+        
         gsap.to(mainImage, {
             duration: 0.3,
             opacity: 0,
@@ -93,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Update active thumbnail with scale animation
+  
         thumbnails.forEach((thumb, i) => {
             if (i === index) {
                 gsap.to(thumb, {
@@ -114,15 +113,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         currentIndex = index;
     }
-    
-    // Set up thumbnail click events
+
     thumbnails.forEach((thumbnail, index) => {
         thumbnail.addEventListener('click', function() {
             updateCarousel(index);
         });
     });
     
-    // Previous button click event
+  
     prevButton.addEventListener('click', function() {
         let newIndex = currentIndex - 1;
         if (newIndex < 0) {
@@ -130,8 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         updateCarousel(newIndex);
     });
-    
-    // Next button click event
+  
     nextButton.addEventListener('click', function() {
         let newIndex = currentIndex + 1;
         if (newIndex >= thumbnails.length) {
@@ -139,8 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         updateCarousel(newIndex);
     });
-    
-    // Keyboard navigation
+ 
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowLeft') {
             prevButton.click();
@@ -148,11 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
             nextButton.click();
         }
     });
-    
-    // Initialize all GSAP animations
+
     initGSAPAnimations();
     
-    // Scroll-triggered animations for carousel and download section
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -171,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    // Observe elements for scroll animations
     const animatedElements = document.querySelectorAll('.carousel-container, .download-section');
     animatedElements.forEach(el => {
         gsap.set(el, { opacity: 0, y: 30 });
