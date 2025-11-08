@@ -1,4 +1,4 @@
-// Home.js - GSAP animations and interactive functionality
+// Home.js - Fixed version
 
 document.addEventListener('DOMContentLoaded', function() {
   // Register ScrollTrigger plugin
@@ -6,11 +6,170 @@ document.addEventListener('DOMContentLoaded', function() {
     gsap.registerPlugin(ScrollTrigger);
   }
 
-  // Initialize animations
+  // Initialize all functionality
+  initLogoReveal();
   initHeroAnimations();
   initScrollAnimations();
   initCarousel();
   initBackToTop();
+  initNavigation();
+  
+  function initLogoReveal() {
+    // Create logo reveal elements
+    const logoRevealContainer = document.createElement('div');
+    logoRevealContainer.className = 'logo-reveal-container';
+    
+    // Add gradient background elements
+    const gradientBg = document.createElement('div');
+    gradientBg.style.position = 'absolute';
+    gradientBg.style.top = '0';
+    gradientBg.style.left = '0';
+    gradientBg.style.width = '100%';
+    gradientBg.style.height = '100%';
+    gradientBg.style.background = 'linear-gradient(135deg, #0c0c0c 0%, #191919 50%, #2d1a0c 100%)';
+    gradientBg.style.opacity = '0.8';
+    logoRevealContainer.appendChild(gradientBg);
+    
+    const logoReveal = document.createElement('div');
+    logoReveal.className = 'logo-reveal';
+    
+    const logoCircle = document.createElement('div');
+    logoCircle.className = 'logo-circle';
+    
+    const logoInner = document.createElement('div');
+    logoInner.className = 'logo-inner';
+    logoInner.textContent = 'SDS';
+    
+    const loadingText = document.createElement('div');
+    loadingText.className = 'loading-text';
+    loadingText.textContent = 'LOADING...';
+    
+    logoReveal.appendChild(logoCircle);
+    logoReveal.appendChild(logoInner);
+    logoRevealContainer.appendChild(logoReveal);
+    logoRevealContainer.appendChild(loadingText);
+    document.body.prepend(logoRevealContainer);
+    
+    // Create particles
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.background = i % 2 === 0 ? 'var(--primary-color)' : 'var(--primary-color';
+      logoRevealContainer.appendChild(particle);
+    }
+    
+    const particles = document.querySelectorAll('.particle');
+    
+    // GSAP Animation Timeline
+    const revealTimeline = gsap.timeline({
+      onComplete: () => {
+        // Remove the container after animation completes
+        setTimeout(() => {
+          logoRevealContainer.style.display = 'none';
+        }, 500);
+      }
+    });
+    
+    revealTimeline
+      // Initial state
+      .set(logoCircle, {
+        scale: 0,
+        rotation: 0,
+        borderColor: 'var(--primary-color)'
+      })
+      .set(logoInner, { scale: 0 })
+      .set(loadingText, { opacity: 0 })
+      .set(particles, {
+        x: '50%',
+        y: '50%',
+        scale: 0,
+        opacity: 0
+      })
+      
+      // Circle grow and rotate
+      .to(logoCircle, {
+        duration: 1.5,
+        scale: 1,
+        rotation: 360,
+        ease: 'back.out(1.7)',
+        borderColor: 'var(--primary-color)'
+      })
+      
+      // Loading text fade in
+      .to(loadingText, {
+        duration: 0.5,
+        opacity: 1,
+        ease: 'power2.out'
+      }, '-=1')
+      
+      // Logo text reveal
+      .to(logoInner, {
+        duration: 0.8,
+        scale: 1,
+        opacity: 1,
+        ease: 'elastic.out(1, 0.5)'
+      }, '-=0.5')
+      
+      // Particle explosion
+      .to(particles, {
+        duration: 1.2,
+        x: () => `+=${gsap.utils.random(-200, 200)}`,
+        y: () => `+=${gsap.utils.random(-200, 200)}`,
+        scale: () => gsap.utils.random(0.5, 1.5),
+        opacity: 1,
+        stagger: 0.05,
+        ease: 'power2.out'
+      }, '-=0.5')
+      
+      // Particle fade out
+      .to(particles, {
+        duration: 0.8,
+        opacity: 0,
+        scale: 0,
+        ease: 'power2.in'
+      })
+      
+      // Everything fade out
+      .to([logoCircle, logoInner, loadingText], {
+        duration: 0.8,
+        opacity: 0,
+        scale: 0,
+        ease: 'power2.inOut'
+      });
+    
+    // Add a subtle background color transition
+    gsap.to(logoRevealContainer, {
+      duration: 2,
+      backgroundColor: 'rgba(25, 25, 25, 0)',
+      ease: 'power2.inOut'
+    });
+  }
+
+  // Initialize navigation functionality
+  function initNavigation() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        
+        // Update aria-expanded attribute
+        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !isExpanded);
+      });
+      
+      // Close menu when clicking on a link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  }
 
   // Hero section animations
   function initHeroAnimations() {
@@ -46,6 +205,49 @@ document.addEventListener('DOMContentLoaded', function() {
       ease: 'sine.inOut',
       stagger: 0.2
     });
+
+    // Add floating circles to hero section
+    addFloatingCircles();
+  }
+
+  // New function to add floating circles
+  function addFloatingCircles() {
+    const heroSection = document.querySelector('.hero');
+    const floatingCirclesContainer = document.createElement('div');
+    floatingCirclesContainer.className = 'floating-circles';
+    
+    // Create multiple floating circles
+    const circleCount = 12;
+    const sizes = ['small', 'medium', 'large'];
+    const colors = ['primary', 'accent', 'light'];
+    
+    for (let i = 0; i < circleCount; i++) {
+      const circle = document.createElement('div');
+      circle.className = `floating-circle ${sizes[i % 3]} ${colors[i % 3]}`;
+      
+      // Random position
+      const randomTop = Math.random() * 100;
+      const randomLeft = Math.random() * 100;
+      
+      circle.style.top = `${randomTop}%`;
+      circle.style.left = `${randomLeft}%`;
+      
+      floatingCirclesContainer.appendChild(circle);
+    }
+    
+    heroSection.appendChild(floatingCirclesContainer);
+    
+    // Animate floating circles
+    gsap.to('.floating-circle', {
+      y: 'random(-40, 40)',
+      x: 'random(-30, 30)',
+      rotation: 'random(-15, 15)',
+      duration: 'random(3, 6)',
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      stagger: 0.3
+    });
   }
 
   // Scroll-triggered animations
@@ -64,10 +266,10 @@ document.addEventListener('DOMContentLoaded', function() {
       ease: 'power2.out'
     });
 
-    // Game cards animation
-    gsap.from('.game-card', {
+    // Navigation cards animation
+    gsap.from('.nav-card', {
       scrollTrigger: {
-        trigger: '.games-section',
+        trigger: '.nav-section',
         start: 'top 70%',
         toggleActions: 'play none none reverse'
       },
@@ -77,163 +279,132 @@ document.addEventListener('DOMContentLoaded', function() {
       stagger: 0.2,
       ease: 'power2.out'
     });
-
-    // About section animation
-    gsap.from('.about-text', {
-      scrollTrigger: {
-        trigger: '.about-section',
-        start: 'top 70%',
-        toggleActions: 'play none none reverse'
-      },
-      x: -50,
-      opacity: 0,
-      duration: 1,
-      ease: 'power2.out'
-    });
-
-    gsap.from('.about-image', {
-      scrollTrigger: {
-        trigger: '.about-section',
-        start: 'top 70%',
-        toggleActions: 'play none none reverse'
-      },
-      x: 50,
-      opacity: 0,
-      duration: 1,
-      ease: 'power2.out'
-    });
   }
 
   // Carousel functionality
-  function initCarousel() {
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const nextButton = document.querySelector('.next-btn');
-    const prevButton = document.querySelector('.prev-btn');
-    const indicators = document.querySelectorAll('.indicator');
+  // Carousel functionality
+function initCarousel() {
+  const track = document.querySelector('.carousel-track');
+  if (!track) return;
+
+  const slides = Array.from(track.children);
+  if (slides.length === 0) return;
+
+  const nextButton = document.querySelector('.next-btn');
+  const prevButton = document.querySelector('.prev-btn');
+  const indicators = Array.from(document.querySelectorAll('.indicator'));
+  
+  const slideWidth = slides[0].getBoundingClientRect().width;
+  let currentIndex = 0;
+  let autoSlideInterval = null;
+
+  // Arrange slides next to each other
+  slides.forEach((slide, index) => {
+    slide.style.left = slideWidth * index + 'px';
+  });
+
+  const moveToSlide = (targetIndex) => {
+    // Validate and clamp targetIndex
+    const index = Math.max(0, Math.min(Math.floor(targetIndex) || 0, slides.length - 1));
+    currentIndex = index;
     
-    if (!track || slides.length === 0) return;
-
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    let currentIndex = 0;
-    let autoSlideInterval;
-
-    // Arrange slides next to each other
-    slides.forEach((slide, index) => {
-      slide.style.left = slideWidth * index + 'px';
+    // Animate to target slide
+    gsap.to(track, {
+      duration: 0.5,
+      x: -index * slideWidth,
+      ease: 'power2.out'
     });
-
-    const moveToSlide = (targetIndex) => {
-      // Update current index
-      currentIndex = targetIndex;
-      
-      // Animate to target slide
-      gsap.to(track, {
-        duration: 0.5,
-        x: -targetIndex * slideWidth,
-        ease: 'power2.out'
-      });
-      
-      // Update current slide class
-      slides.forEach(slide => slide.classList.remove('current-slide'));
-      slides[targetIndex].classList.add('current-slide');
-      
-      // Update indicators
+    
+    // Update current slide class
+    slides.forEach(slide => slide.classList.remove('current-slide'));
+    slides[index].classList.add('current-slide');
+    
+    // Update indicators if present
+    if (indicators.length > 0) {
       indicators.forEach(indicator => indicator.classList.remove('active'));
-      indicators[targetIndex].classList.add('active');
-    };
+      if (indicators[index]) indicators[index].classList.add('active');
+      
+      // Update aria-labels for accessibility
+      indicators.forEach((indicator, i) => {
+        indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        if (i === index) {
+          indicator.setAttribute('aria-current', 'true');
+        } else {
+          indicator.removeAttribute('aria-current');
+        }
+      });
+    }
+  };
 
-    const nextSlide = () => {
-      const nextIndex = (currentIndex + 1) % slides.length;
-      moveToSlide(nextIndex);
-    };
+  const nextSlide = () => {
+    const nextIndex = (currentIndex + 1) % slides.length;
+    moveToSlide(nextIndex);
+  };
 
-    const prevSlide = () => {
-      const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-      moveToSlide(prevIndex);
-    };
+  const prevSlide = () => {
+    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+    moveToSlide(prevIndex);
+  };
 
-    // When click next button
+  // When click next button
+  if (nextButton) {
     nextButton.addEventListener('click', nextSlide);
-    
-    // When click prev button
+  }
+  
+  // When click prev button
+  if (prevButton) {
     prevButton.addEventListener('click', prevSlide);
-    
-    // When click indicator
+  }
+  
+  // When click indicator
+  if (indicators.length > 0) {
     indicators.forEach(indicator => {
       indicator.addEventListener('click', () => {
-        const targetIndex = parseInt(indicator.getAttribute('data-index'));
+        const raw = indicator.getAttribute('data-index');
+        const targetIndex = parseInt(raw, 10);
+        if (Number.isNaN(targetIndex) || targetIndex < 0 || targetIndex >= slides.length) return;
         moveToSlide(targetIndex);
       });
     });
+  }
 
-    // Auto slide every 5 seconds
-    const startAutoSlide = () => {
-      autoSlideInterval = setInterval(nextSlide, 5000);
-    };
+  // Auto slide every 5 seconds
+  const startAutoSlide = () => {
+    stopAutoSlide();
+    autoSlideInterval = setInterval(nextSlide, 5000);
+  };
 
-    const stopAutoSlide = () => {
+  const stopAutoSlide = () => {
+    if (autoSlideInterval !== null) {
       clearInterval(autoSlideInterval);
-    };
-
-    // Pause auto-slide on hover
-    const carouselContainer = document.querySelector('.carousel-container');
-    if (carouselContainer) {
-      carouselContainer.addEventListener('mouseenter', stopAutoSlide);
-      carouselContainer.addEventListener('mouseleave', startAutoSlide);
+      autoSlideInterval = null;
     }
+  };
 
-    // Start auto-slide
-    startAutoSlide();
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      const newSlideWidth = slides[0].getBoundingClientRect().width;
-      slides.forEach((slide, index) => {
-        slide.style.left = newSlideWidth * index + 'px';
-      });
-      moveToSlide(currentIndex);
-    });
+  // Pause auto-slide on hover/focus
+  const carouselContainer = document.querySelector('.carousel-container');
+  if (carouselContainer) {
+    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+    carouselContainer.addEventListener('mouseleave', startAutoSlide);
+    
+    // Pause auto-slide when focused
+    carouselContainer.addEventListener('focusin', stopAutoSlide);
+    carouselContainer.addEventListener('focusout', startAutoSlide);
   }
 
-  // Back to top functionality
-  function initBackToTop() {
-    const backToTopBtn = document.getElementById('backToTopBtn');
-    if (!backToTopBtn) return;
+  // Initialize to first slide to set classes/indicators correctly
+  moveToSlide(0);
 
-    // Show/hide button on scroll
-    gsap.to(backToTopBtn, {
-      scrollTrigger: {
-        trigger: 'body',
-        start: 'top top',
-        end: 'bottom top',
-        onEnter: () => backToTopBtn.classList.add('visible'),
-        onLeaveBack: () => backToTopBtn.classList.remove('visible')
-      }
-    });
+  // Start auto-slide
+  startAutoSlide();
 
-    // Scroll to top when clicked
-    backToTopBtn.addEventListener('click', () => {
-      gsap.to(window, {
-        duration: 1,
-        scrollTo: { y: 0 },
-        ease: 'power2.inOut'
-      });
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    const newSlideWidth = slides[0].getBoundingClientRect().width;
+    slides.forEach((slide, index) => {
+      slide.style.left = newSlideWidth * index + 'px';
     });
-  }
-
-  // Add smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        gsap.to(window, {
-          duration: 1,
-          scrollTo: { y: target, offsetY: 50 },
-          ease: 'power2.inOut'
-        });
-      }
-    });
+    // Recompute transform to current slide
+    gsap.set(track, { x: -currentIndex * newSlideWidth });
   });
-});
+}
