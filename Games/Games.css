@@ -39,6 +39,7 @@ main {
   height: 100%;
   width: 100%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transform-origin: center bottom;
 }
 
 .game-card:hover {
@@ -127,6 +128,8 @@ main {
   margin-right: auto;
   padding: 0 20px;
   flex-wrap: wrap;
+  transform: translateY(-20px);
+  opacity: 0;
 }
 
 #search-input {
@@ -185,6 +188,7 @@ main {
   height: 50px;
   animation: spin 1s linear infinite;
   margin: 0 auto 15px; /* Reduced from 20px */
+  position: relative;
 }
 
 @keyframes spin {
@@ -287,11 +291,40 @@ main {
   gap: 12px; /* Already updated above */
 }
 
-/* Responsive design for buttons */
-@media (max-width: 480px) {
-  .game-buttons {
-    gap: 6px; /* Reduced from 8px */
-  }
+/* GSAP Animations */
+.animated-element {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Floating animation for decorative elements */
+.floating-orb {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(237, 106, 24, 0.3) 0%, rgba(237, 106, 24, 0.1) 70%);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+}
+
+.motion-path-demo {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(237, 106, 24, 0.8);
+  border-radius: 50%;
+  display: none;
+}
+
+.loading-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ed6a18;
+  border-radius: 50%;
+  opacity: 0;
 }
 
 #backToTopBtn:hover {

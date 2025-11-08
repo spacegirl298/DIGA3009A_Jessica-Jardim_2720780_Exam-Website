@@ -20,19 +20,31 @@ function initCarousel() {
   let cardWidth = 0;
   let cardsToShow = 3; // Default for desktop
 
-  // Calculate how many cards to show based on screen size
-  function calculateCardsToShow() {
-    const width = window.innerWidth;
-    if (width <= 480) { // Mobile
-      cardsToShow = 1;
-    } else if (width <= 768) { // Tablet
-      cardsToShow = 2;
-    } else { // Desktop
-      cardsToShow = 3;
-    }
-    return cardsToShow;
+  // Update the calculateCardsToShow function in your existing JavaScript
+// Replace your existing calculateCardsToShow function with this:
+function calculateCardsToShow() {
+  const width = window.innerWidth;
+  if (width <= 480) { // Mobile
+    cardsToShow = 1;
+  } else if (width <= 768) { // Tablet
+    cardsToShow = 2;
+  } else { // Desktop
+    cardsToShow = 3;
   }
+  return cardsToShow;
+}
 
+// Add this function to handle orientation changes
+function handleOrientationChange() {
+  setTimeout(() => {
+    calculateCardWidth();
+    createIndicators();
+    updateCarousel(false);
+  }, 300);
+}
+
+// Add orientation change listener in your initCarousel function
+window.addEventListener('orientationchange', handleOrientationChange);
   // Calculate card width including gap
   function calculateCardWidth() {
     if (cards.length === 0) return 0;

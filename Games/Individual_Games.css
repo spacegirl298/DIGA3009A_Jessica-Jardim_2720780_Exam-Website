@@ -70,7 +70,6 @@ main {
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -107,7 +106,7 @@ main {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.3s ease;
+
 }
 
 .carousel-arrow {
@@ -157,7 +156,6 @@ main {
   border-radius: 6px;
   cursor: pointer;
   opacity: 0.7;
-  transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

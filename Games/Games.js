@@ -150,6 +150,7 @@ function createGameCard(game) {
     </div>
   `;
 }
+
 // Function to fetch game data from Itch.io API with better error handling
 async function fetchGameData(gameSlug) {
   return new Promise((resolve, reject) => {
@@ -179,6 +180,243 @@ async function fetchGameData(gameSlug) {
         clearTimeout(timeout);
         reject(error);
       },
+    });
+  });
+}
+
+// GSAP Animation Functions
+function setupGSAPAnimations() {
+  // Create master timeline
+  const masterTL = gsap.timeline();
+  
+  // Title animation
+  masterTL.fromTo(".entry-title", 
+    { y: -50, opacity: 0 },
+    { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
+  );
+
+  // Search controls animation
+  masterTL.fromTo(".search-controls",
+    { y: -20, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.7)" },
+    "-=0.5"
+  );
+
+  // Setup floating orbs
+  setupFloatingOrbs();
+  
+  // Setup motion path demonstration
+  setupMotionPath();
+  
+  // Setup scroll animations for game cards
+  setupScrollAnimations();
+  
+  return masterTL;
+}
+
+function setupFloatingOrbs() {
+  // Orb 1 - Large circular motion
+  gsap.to("#orb1", {
+    motionPath: {
+      path: [
+        { x: 100, y: 100 },
+        { x: 300, y: 50 },
+        { x: 500, y: 150 },
+        { x: 300, y: 250 },
+        { x: 100, y: 100 }
+      ],
+      curviness: 1.5
+    },
+    duration: 25,
+    repeat: -1,
+    ease: "sine.inOut",
+    opacity: 0.6,
+    scale: 1.2
+  });
+
+  // Orb 2 - Figure 8 motion
+  gsap.to("#orb2", {
+    motionPath: {
+      path: [
+        { x: window.innerWidth - 150, y: 200 },
+        { x: window.innerWidth - 300, y: 100 },
+        { x: window.innerWidth - 150, y: 200 },
+        { x: window.innerWidth - 300, y: 300 },
+        { x: window.innerWidth - 150, y: 200 }
+      ]
+    },
+    duration: 20,
+    repeat: -1,
+    ease: "power1.inOut",
+    opacity: 0.4,
+    scale: 0.8,
+    delay: 5
+  });
+
+  // Orb 3 - Random floating motion
+  gsap.to("#orb3", {
+    motionPath: {
+      path: [
+        { x: 200, y: window.innerHeight - 100 },
+        { x: 400, y: window.innerHeight - 50 },
+        { x: 300, y: window.innerHeight - 200 },
+        { x: 150, y: window.innerHeight - 150 },
+        { x: 200, y: window.innerHeight - 100 }
+      ],
+      curviness: 2
+    },
+    duration: 30,
+    repeat: -1,
+    ease: "sine.inOut",
+    opacity: 0.3,
+    scale: 1.5,
+    delay: 10
+  });
+}
+
+function setupMotionPath() {
+  const motionPathElement = document.getElementById('motionPathElement');
+  
+  // Only show on larger screens
+  if (window.innerWidth > 768) {
+    motionPathElement.style.display = 'block';
+    
+    // Complex motion path animation
+    gsap.to(motionPathElement, {
+      motionPath: {
+        path: [
+          { x: 50, y: 100 },
+          { x: 200, y: 50 },
+          { x: 400, y: 150 },
+          { x: 600, y: 80 },
+          { x: 800, y: 200 },
+          { x: 1000, y: 100 },
+          { x: 1200, y: 250 }
+        ],
+        curviness: 1.8,
+        autoRotate: true
+      },
+      scale: 1.5,
+      duration: 8,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+      opacity: 0.7
+    });
+  }
+}
+
+function setupScrollAnimations() {
+  // Animate game cards on scroll
+  gsap.utils.toArray('.game-card').forEach((card, index) => {
+    gsap.fromTo(card, 
+      {
+        y: 100,
+        opacity: 0,
+        rotationY: 15
+      },
+      {
+        y: 0,
+        opacity: 1,
+        rotationY: 0,
+        duration: 0.8,
+        ease: "back.out(1.2)",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        },
+        delay: index * 0.1
+      }
+    );
+  });
+
+  // Search controls bounce animation on focus
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('focus', () => {
+      gsap.to('.search-controls', {
+        scale: 1.02,
+        duration: 0.3,
+        ease: "elastic.out(1, 0.5)"
+      });
+    });
+    
+    searchInput.addEventListener('blur', () => {
+      gsap.to('.search-controls', {
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+  }
+}
+
+function animateGameCardsSequentially() {
+  const cards = gsap.utils.toArray('.game-card');
+  
+  const cardTimeline = gsap.timeline({
+    defaults: { duration: 0.6, ease: "power2.out" }
+  });
+  
+  cards.forEach((card, index) => {
+    cardTimeline.fromTo(card,
+      {
+        y: 50,
+        opacity: 0,
+        scale: 0.8
+      },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        delay: index * 0.1
+      },
+      index * 0.05
+    );
+  });
+  
+  return cardTimeline;
+}
+
+function setupGameCardHoverAnimations() {
+  const cards = document.querySelectorAll('.game-card');
+  
+  cards.forEach(card => {
+    // Mouse enter animation
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        y: -8,
+        scale: 1.03,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+      
+      // Animate the game image
+      const image = card.querySelector('.game-image');
+      gsap.to(image, {
+        scale: 1.1,
+        duration: 0.4,
+        ease: "power2.out"
+      });
+    });
+    
+    // Mouse leave animation
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        y: 0,
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+      
+      const image = card.querySelector('.game-image');
+      gsap.to(image, {
+        scale: 1,
+        duration: 0.4,
+        ease: "power2.out"
+      });
     });
   });
 }
@@ -228,6 +466,7 @@ function createFallbackGameData(game) {
     cover_url: null, // Force use of fallback image
   };
 }
+
 // Function to display games
 function displayGames(games) {
   const gamesContainer = document.getElementById("games-container");
@@ -239,10 +478,22 @@ function displayGames(games) {
         <p>No games found matching your search.</p>
       </div>
     `;
+    
+    // Animate no results message
+    gsap.fromTo('.no-results',
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }
+    );
     return;
   }
 
   gamesContainer.innerHTML = games.map((game) => createGameCard(game)).join("");
+  
+  // Animate the cards after they're added to DOM
+  setTimeout(() => {
+    animateGameCardsSequentially();
+    setupGameCardHoverAnimations();
+  }, 100);
 }
 
 // Function to load demo data as fallback
@@ -301,13 +552,34 @@ function init() {
   document.getElementById("reset-btn").addEventListener("click", () => {
     document.getElementById("search-input").value = "";
     displayGames(allGames);
+    
+    // Add slight animation when resetting
+    gsap.to('.games-grid', {
+      scale: 1.02,
+      duration: 0.3,
+      yoyo: true,
+      repeat: 1,
+      ease: "power2.inOut"
+    });
   });
 
   document.getElementById("search-input").addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       searchGames();
+      
+      // Add search animation
+      gsap.to('#search-btn', {
+        scale: 0.9,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut"
+      });
     }
   });
+
+  // Initialize GSAP animations
+  const masterTimeline = setupGSAPAnimations();
 
   // Load games
   loadGames();
@@ -321,6 +593,19 @@ function init() {
     }
   }, 7000);
 }
+
+// Add resize handler for responsive animations
+window.addEventListener('resize', () => {
+  // Re-setup motion path on resize
+  const motionPathElement = document.getElementById('motionPathElement');
+  if (window.innerWidth <= 768) {
+    motionPathElement.style.display = 'none';
+    gsap.killTweensOf(motionPathElement);
+  } else {
+    motionPathElement.style.display = 'block';
+    setupMotionPath();
+  }
+});
 
 // Initialize when DOM is loaded
 if (document.readyState === "loading") {
@@ -344,4 +629,3 @@ if (backToTopBtn) {
     });
   });
 }
-
