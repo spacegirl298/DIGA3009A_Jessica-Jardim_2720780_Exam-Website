@@ -289,12 +289,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let autoSlideInterval;
     let isTransitioning = false;
 
-    const slideWidth = slides[0].getBoundingClientRect().width;
-
-    slides.forEach((slide, index) => {
-      slide.style.left = slideWidth * index + "px";
-    });
-
+    
+    
     document.querySelectorAll(".carousel-slide img").forEach((img) => {
       img.addEventListener("error", function () {
         console.warn("Image failed to load:", this.src);
@@ -311,9 +307,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       currentIndex = targetIndex;
 
+     
       gsap.to(track, {
         duration: 0.5,
-        x: -targetIndex * slideWidth,
+        x: `-${targetIndex * 100}%`,
         ease: "power2.out",
         onComplete: () => {
           isTransitioning = false;
@@ -384,11 +381,8 @@ document.addEventListener("DOMContentLoaded", function () {
     startAutoSlide();
 
     window.addEventListener("resize", () => {
-      const newSlideWidth = slides[0].getBoundingClientRect().width;
-      slides.forEach((slide, index) => {
-        slide.style.left = newSlideWidth * index + "px";
-      });
-      moveToSlide(currentIndex);
+     
+      gsap.set(track, { x: `-${currentIndex * 100}%` });
     });
 
     moveToSlide(0);
