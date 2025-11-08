@@ -25,7 +25,6 @@ main {
   padding: 50px;
   display: flex;
   flex-direction: column;
-  
 }
 
 /* Image gallery */
@@ -43,7 +42,7 @@ main {
   height: 200px;
   object-fit: cover;
   border-radius: 8px;
- box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
 }
 
@@ -54,17 +53,15 @@ main {
 /* Download section */
 .download-section {
   text-align: center;
-  
+
   border-radius: 12px;
 }
-
-
 
 .download-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-   background: rgba(237, 106, 2, 0.8);
+  background: rgba(237, 106, 2, 0.8);
   color: #fefefc;
   padding: 12px 30px;
   border-radius: 50px;
@@ -74,7 +71,7 @@ main {
 }
 
 .download-btn:hover {
-    background: rgba(237, 106, 2, 1);
+  background: rgba(237, 106, 2, 1);
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
@@ -106,7 +103,6 @@ main {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-
 }
 
 .carousel-arrow {
@@ -119,7 +115,7 @@ main {
   height: 50px;
   border-radius: 50%;
   font-size: 1.5rem;
-  color:  rgba(237, 106, 2, 1);
+  color: rgba(237, 106, 2, 1);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -166,8 +162,172 @@ main {
 
 .thumbnail.active {
   opacity: 1;
-  border: 3px solid  rgba(237, 106, 2, 1);;
+  border: 3px solid rgba(237, 106, 2, 1);
   transform: scale(1.05);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.hamburger-btn {
+  background: rgba(237, 106, 24, 0.9);
+  border: none;
+  border-radius: 8px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hamburger-btn:hover {
+  background: rgba(237, 106, 24, 1);
+  transform: scale(1.05);
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #fefefc;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.games-sidebar {
+  position: fixed;
+  top: 0;
+  left: -400px;
+  width: 300px;
+  height: 100vh;
+  background: #191919;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5);
+  transition: left 0.4s ease;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+}
+
+.games-sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #ed6a18;
+  color: #fefefc;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.close-sidebar {
+  background: none;
+  border: none;
+  color: #fefefc;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.close-sidebar:hover {
+  transform: scale(1.2);
+}
+
+.games-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.games-list li {
+  border-bottom: 1px solid #444;
+}
+
+.game-link {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  color: #fefefc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  gap: 15px;
+  font-size: 1.1rem;
+}
+
+.game-link:hover {
+  background: #444;
+  padding-left: 25px;
+}
+
+.game-link.active {
+  background: #ed6a18;
+  border-left: 4px solid #fefefc;
+}
+
+.game-link i {
+  width: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ed6a18;
+  transition: color 0.3s ease;
+}
+
+.game-link.active i {
+  color: #fefefc;
+}
+
+.game-link span {
+  font-weight: 600;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /*Responsive Layout*/
@@ -196,7 +356,6 @@ main {
   }
 }
 
-
 @media (max-width: 768px) {
   .entry-title {
     font-size: 2.2rem;
@@ -208,5 +367,42 @@ main {
 
   .image-gallery img {
     max-width: 100%;
+  }
+
+  .hamburger-menu {
+    top: 70px;
+    left: 15px;
+  }
+
+  .hamburger-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .games-sidebar {
+    width: 280px;
+  }
+
+  .game-link {
+    padding: 16px 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .games-sidebar {
+    width: 260px;
+  }
+
+  .sidebar-header {
+    padding: 15px;
+  }
+
+  .sidebar-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .game-link {
+    padding: 14px 15px;
   }
 }
