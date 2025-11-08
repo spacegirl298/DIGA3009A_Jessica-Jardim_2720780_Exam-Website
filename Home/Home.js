@@ -281,22 +281,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Carousel functionality
-  // Carousel functionality
+// Carousel functionality - Fixed version
 function initCarousel() {
   const track = document.querySelector('.carousel-track');
-  if (!track) return;
-
   const slides = Array.from(track.children);
-  if (slides.length === 0) return;
-
   const nextButton = document.querySelector('.next-btn');
   const prevButton = document.querySelector('.prev-btn');
-  const indicators = Array.from(document.querySelectorAll('.indicator'));
+  const indicators = document.querySelectorAll('.indicator');
   
+  if (!track || slides.length === 0) return;
+
   const slideWidth = slides[0].getBoundingClientRect().width;
   let currentIndex = 0;
-  let autoSlideInterval = null;
+  let autoSlideInterval;
+  let isTransitioning = false;
 
   // Arrange slides next to each other
   slides.forEach((slide, index) => {
@@ -304,36 +302,40 @@ function initCarousel() {
   });
 
   const moveToSlide = (targetIndex) => {
-    // Validate and clamp targetIndex
-    const index = Math.max(0, Math.min(Math.floor(targetIndex) || 0, slides.length - 1));
-    currentIndex = index;
+    if (isTransitioning) return;
+    
+    isTransitioning = true;
+    
+    // Update current index
+    currentIndex = targetIndex;
     
     // Animate to target slide
     gsap.to(track, {
       duration: 0.5,
-      x: -index * slideWidth,
-      ease: 'power2.out'
+      x: -targetIndex * slideWidth,
+      ease: 'power2.out',
+      onComplete: () => {
+        isTransitioning = false;
+      }
     });
     
     // Update current slide class
     slides.forEach(slide => slide.classList.remove('current-slide'));
-    slides[index].classList.add('current-slide');
+    slides[targetIndex].classList.add('current-slide');
     
-    // Update indicators if present
-    if (indicators.length > 0) {
-      indicators.forEach(indicator => indicator.classList.remove('active'));
-      if (indicators[index]) indicators[index].classList.add('active');
-      
-      // Update aria-labels for accessibility
-      indicators.forEach((indicator, i) => {
-        indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
-        if (i === index) {
-          indicator.setAttribute('aria-current', 'true');
-        } else {
-          indicator.removeAttribute('aria-current');
-        }
-      });
-    }
+    // Update indicators
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    indicators[targetIndex].classList.add('active');
+    
+    // Update aria-labels for accessibility
+    indicators.forEach((indicator, index) => {
+      indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+      if (index === targetIndex) {
+        indicator.setAttribute('aria-current', 'true');
+      } else {
+        indicator.removeAttribute('aria-current');
+      }
+    });
   };
 
   const nextSlide = () => {
@@ -347,41 +349,29 @@ function initCarousel() {
   };
 
   // When click next button
-  if (nextButton) {
-    nextButton.addEventListener('click', nextSlide);
-  }
+  nextButton.addEventListener('click', nextSlide);
   
   // When click prev button
-  if (prevButton) {
-    prevButton.addEventListener('click', prevSlide);
-  }
+  prevButton.addEventListener('click', prevSlide);
   
   // When click indicator
-  if (indicators.length > 0) {
-    indicators.forEach(indicator => {
-      indicator.addEventListener('click', () => {
-        const raw = indicator.getAttribute('data-index');
-        const targetIndex = parseInt(raw, 10);
-        if (Number.isNaN(targetIndex) || targetIndex < 0 || targetIndex >= slides.length) return;
-        moveToSlide(targetIndex);
-      });
+  indicators.forEach(indicator => {
+    indicator.addEventListener('click', () => {
+      const targetIndex = parseInt(indicator.getAttribute('data-index'));
+      moveToSlide(targetIndex);
     });
-  }
+  });
 
   // Auto slide every 5 seconds
   const startAutoSlide = () => {
-    stopAutoSlide();
     autoSlideInterval = setInterval(nextSlide, 5000);
   };
 
   const stopAutoSlide = () => {
-    if (autoSlideInterval !== null) {
-      clearInterval(autoSlideInterval);
-      autoSlideInterval = null;
-    }
+    clearInterval(autoSlideInterval);
   };
 
-  // Pause auto-slide on hover/focus
+  // Pause auto-slide on hover
   const carouselContainer = document.querySelector('.carousel-container');
   if (carouselContainer) {
     carouselContainer.addEventListener('mouseenter', stopAutoSlide);
@@ -392,9 +382,6 @@ function initCarousel() {
     carouselContainer.addEventListener('focusout', startAutoSlide);
   }
 
-  // Initialize to first slide to set classes/indicators correctly
-  moveToSlide(0);
-
   // Start auto-slide
   startAutoSlide();
 
@@ -404,7 +391,23 @@ function initCarousel() {
     slides.forEach((slide, index) => {
       slide.style.left = newSlideWidth * index + 'px';
     });
-    // Recompute transform to current slide
-    gsap.set(track, { x: -currentIndex * newSlideWidth });
+    moveToSlide(currentIndex);
   });
+
+  // Initialize first slide
+  moveToSlide(0);
 }
+  // Add smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 50,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});

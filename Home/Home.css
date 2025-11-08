@@ -258,10 +258,10 @@ html {
   background: var(--primary-color);
 }
 
-/* Enhanced Carousel */
 /* Enhanced Carousel - Fixed Alignment */
 .carousel-section {
   padding: 80px 0;
+  position: relative;
 }
 
 .section-title {
@@ -282,20 +282,15 @@ html {
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease-in-out;
   width: 100%;
 }
 
 .carousel-slide {
   min-width: 100%;
   position: relative;
-  opacity: 0;
-  transition: opacity 0.5s ease;
   flex-shrink: 0;
-}
-
-.carousel-slide.current-slide {
-  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .carousel-slide img {
@@ -357,6 +352,30 @@ html {
   background: white;
   transform: scale(1.2);
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-slide img {
+    height: 300px;
+  }
+  
+  .carousel-btn {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide img {
+    height: 250px;
+  }
+  
+  .carousel-btn {
+    font-size: 1.2rem;
+    padding: 6px 10px;
+  }
+}
+
 /* Navigation Cards Section */
 .nav-section {
   padding: 80px 0;
@@ -385,7 +404,7 @@ html {
 
 .nav-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 .nav-card img {

@@ -10,12 +10,13 @@ main {
   font-weight: 700;
   font-size: 2rem;
   padding: 20px 0;
-  margin: 0 0 40px 0;
+  margin: 0 0 30px 0; /* Reduced from 40px */
   width: 100vw;
   margin-left: calc(50% - 50vw);
   border-bottom: 1px solid #783e02;
   color: #fefefc;
 }
+
 /* Games Page Specific Styles */
 .games-grid {
   display: grid;
